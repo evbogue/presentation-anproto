@@ -374,7 +374,7 @@ async function renderSlideDeck(): Promise<string> {
     }
 
     .topology-image {
-      width: min(860px, 92%);
+      width: min(860px, 65%);
       height: auto;
       display: block;
       margin: 12px auto 0;
@@ -431,7 +431,7 @@ async function renderSlideDeck(): Promise<string> {
     </section>
 
     <section class="slide">
-      <span class="kicker">Network Shapes</span>
+      <span class="kicker">Network Architectures</span>
       <figure class="topology-figure">
         <img class="topology-image" src="https://berty.tech/blog/decentralized-distributed-centralized/decentralized2_huce764145a0a4ba92d2f6009192c4da0f_86406_857x0_resize_q100_lanczos_3.webp" alt="Diagram comparing centralized, decentralized, and distributed networks" />
         <figcaption class="topology-caption">Baran, P. (1964). On Distributed Communications, Memorandum RM-3420-PR.</figcaption>
