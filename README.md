@@ -12,7 +12,7 @@ This repo contains a lightweight Deno server that renders a slideshow presentati
 deno run --allow-read --allow-net server.ts
 ```
 
-Then open `http://localhost:8000` in your browser.
+Then open `http://localhost:8099` in your browser.
 
 ## Content sources
 

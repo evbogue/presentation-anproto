@@ -514,7 +514,7 @@ async function renderSlideDeck(): Promise<string> {
 </html>`;
 }
 
-Deno.serve(async (req) => {
+Deno.serve({ port: 8099 }, async (req) => {
   const url = new URL(req.url);
   const pathname = decodeURIComponent(url.pathname);
 
