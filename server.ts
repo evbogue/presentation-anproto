@@ -67,6 +67,11 @@ function parseTable(markdown: string): string | null {
   return null;
 }
 
+function formatInline(text: string): string {
+  const escaped = escapeHtml(text);
+  return escaped.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
 function parseRisksMarkdown(markdown: string): string {
   const lines = markdown.split(/\r?\n/);
   let html = "";
@@ -92,7 +97,7 @@ function parseRisksMarkdown(markdown: string): string {
     if (headingMatch) {
       closeList();
       const level = headingMatch[1].length;
-      const content = escapeHtml(headingMatch[2]);
+      const content = formatInline(headingMatch[2]);
       html += `<h${level}>${content}</h${level}>`;
       listMode = level >= 3;
       continue;
@@ -105,12 +110,12 @@ function parseRisksMarkdown(markdown: string): string {
         html += "<ul>";
         listOpen = true;
       }
-      html += `<li>${escapeHtml(listItem)}</li>`;
+      html += `<li>${formatInline(listItem)}</li>`;
       continue;
     }
 
     closeList();
-    html += `<p>${escapeHtml(trimmed)}</p>`;
+    html += `<p>${formatInline(trimmed)}</p>`;
   }
 
   closeList();
@@ -298,6 +303,16 @@ async function renderSlideDeck(): Promise<string> {
       border: 1px solid rgba(44, 93, 125, 0.2);
     }
 
+    .callout {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(194, 70, 43, 0.16);
+      border: 1px solid rgba(194, 70, 43, 0.35);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
     .accent-block {
       background: rgba(194, 70, 43, 0.08);
       border: 1px solid rgba(194, 70, 43, 0.2);
@@ -321,6 +336,79 @@ async function renderSlideDeck(): Promise<string> {
       font-weight: 600;
     }
     tr:nth-child(even) td { background: rgba(31, 26, 23, 0.03); }
+
+    .table-gray-ssb th:nth-child(2),
+    .table-gray-ssb td:nth-child(2) {
+      background: rgba(31, 26, 23, 0.08);
+      color: rgba(31, 26, 23, 0.4);
+    }
+
+    .table-gray-ssb th:nth-child(2) {
+      font-weight: 500;
+    }
+
+    .table-gray-activitypub th:nth-child(3),
+    .table-gray-activitypub td:nth-child(3),
+    .table-gray-nostr th:nth-child(6),
+    .table-gray-nostr td:nth-child(6),
+    .table-gray-farcaster th:nth-child(7),
+    .table-gray-farcaster td:nth-child(7) {
+      background: rgba(31, 26, 23, 0.08);
+      color: rgba(31, 26, 23, 0.4);
+    }
+
+    .table-gray-activitypub th:nth-child(3),
+    .table-gray-nostr th:nth-child(6),
+    .table-gray-farcaster th:nth-child(7) {
+      font-weight: 500;
+    }
+
+    .table-stamps {
+      position: relative;
+    }
+
+    .table-stamps table {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stamp {
+      position: absolute;
+      padding: 6px 14px;
+      border: 2px solid rgba(194, 70, 43, 0.7);
+      border-radius: 6px;
+      color: rgba(194, 70, 43, 0.85);
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(251, 247, 240, 0.9);
+      box-shadow: 0 8px 18px rgba(31, 26, 23, 0.18);
+      pointer-events: none;
+      white-space: pre;
+      line-height: 1.1;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .stamp-ssb {
+      top: 22px;
+      left: 16%;
+      transform: translateX(-50%) rotate(-10deg);
+      letter-spacing: 0.14em;
+    }
+
+    .stamp-activitypub {
+      top: 24px;
+      left: 34%;
+      transform: translateX(-50%) rotate(-8deg);
+      letter-spacing: 0.14em;
+    }
+
+    .stamp-nostr-farcaster {
+      top: 28px;
+      left: 84%;
+      transform: translateX(-50%) rotate(5deg);
+      letter-spacing: 0.08em;
+    }
 
     .footer {
       position: absolute;
@@ -363,14 +451,90 @@ async function renderSlideDeck(): Promise<string> {
       box-shadow: 0 18px 40px rgba(31, 26, 23, 0.12);
     }
 
+    .embed-frame.half {
+      height: clamp(240px, 45vh, 420px);
+    }
+
     .iframe-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
     }
 
+    .risk-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .image-card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid rgba(31, 26, 23, 0.12);
+      box-shadow: 0 18px 40px rgba(31, 26, 23, 0.12);
+      padding: 14px;
+    }
+
+    .image-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .bio {
+      display: grid;
+      grid-template-columns: 33% 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .asks-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .asks-card {
+      padding: 8px 0;
+    }
+
+    .asks-card h3 {
+      margin: 0 0 12px;
+    }
+
+    .asks-card ul {
+      margin: 0;
+    }
+
+    .asks-side {
+      text-align: left;
+    }
+
+    .bio-photo {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid rgba(31, 26, 23, 0.12);
+      box-shadow: 0 18px 40px rgba(31, 26, 23, 0.15);
+      object-fit: cover;
+    }
+
     .topology-figure {
       margin: 0;
+    }
+
+    .topology-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 28px;
+      align-items: center;
     }
 
     .topology-image {
@@ -388,6 +552,18 @@ async function renderSlideDeck(): Promise<string> {
       font-size: 0.9rem;
       color: var(--muted);
       margin-top: 12px;
+    }
+
+    .source-line {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .source-line a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(194, 70, 43, 0.4);
     }
 
     .dot {
@@ -415,7 +591,12 @@ async function renderSlideDeck(): Promise<string> {
       .slide { padding: 32px 28px; min-height: 70vh; }
       table { font-size: 0.8rem; }
       .embed-frame { height: clamp(300px, 50vh, 420px); }
+      .embed-frame.half { height: clamp(220px, 38vh, 360px); }
       .risks-grid { grid-template-columns: 1fr; }
+      .risk-layout { grid-template-columns: 1fr; }
+      .topology-layout { grid-template-columns: 1fr; }
+      .bio { grid-template-columns: 1fr; }
+      .asks-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -427,49 +608,141 @@ async function renderSlideDeck(): Promise<string> {
         <h1>ANProto</h1>
         <p>Authenticated Non-networked Protocol</p>
       </div>
-      <div class="footer">Slide 1 / 7</div>
+      <div class="footer">Slide 1 / 12</div>
     </section>
 
     <section class="slide">
-      <span class="kicker">Network Architectures</span>
-      <figure class="topology-figure">
-        <img class="topology-image" src="https://berty.tech/blog/decentralized-distributed-centralized/decentralized2_huce764145a0a4ba92d2f6009192c4da0f_86406_857x0_resize_q100_lanczos_3.webp" alt="Diagram comparing centralized, decentralized, and distributed networks" />
-        <figcaption class="topology-caption">Baran, P. (1964). On Distributed Communications, Memorandum RM-3420-PR.</figcaption>
+      <div class="bio">
+        <img class="bio-photo" src="/IMG_6743.jpg" alt="Portrait photo" />
+        <div>
+          <h2>Everett Bogue</h2>
+          <p>Professional kayaker by summer, protocol dev by winter.</p>
+        </div>
+      </div>
+      <div class="footer">Slide 2 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Centralized Social Risks</span>
+      <div class="risk-layout">
+        <div>
+          <p><strong>What is Centralized Social</strong>? Facebook/Instagram, LinkedIn, X</p>
+          ${risksHtml}
+          <figure class="image-card">
+            <img src="https://berty.tech/blog/decentralized-distributed-centralized/decentralized2_huce764145a0a4ba92d2f6009192c4da0f_86406_857x0_resize_q100_lanczos_3.webp" alt="Diagram comparing centralized, decentralized, and distributed networks" />
+            <figcaption class="topology-caption">Baran, P. (1964). On Distributed Communications, Memorandum RM-3420-PR.</figcaption>
+          </figure>
+        </div>
+        <div class="image-stack">
+          <figure class="image-card">
+            <img src="/pfd.jpg" alt="Personal flotation device" />
+            <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
+          </figure>
+          <p class="callout">No one cares about decentralization until something happens...</p>
+        </div>
+      </div>
+      <div class="footer">Slide 3 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Distributed / Decentralized / Centralized</span>
+      <figure class="image-card">
+        <img src="/comparison.png" alt="Boating decentralization comparison" />
       </figure>
-      <div class="footer">Slide 2 / 7</div>
-    </section>
-
-    <section class="slide">
-      <span class="kicker">Risks in Centralized Social Media</span>
-      ${risksHtml}
-      <div class="footer">Slide 3 / 7</div>
+      <div class="footer">Slide 4 / 12</div>
     </section>
 
     <section class="slide">
       <span class="kicker">AnProto Demo</span>
       <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
-      <div class="footer">Slide 4 / 7</div>
+      <div class="footer">Slide 5 / 12</div>
     </section>
 
     <section class="slide">
-      <span class="kicker">How ANProto compares</span>
-      ${tableHtml}
-      <div class="footer">Slide 5 / 7</div>
-    </section>
-
-    <section class="slide">
-      <span class="kicker">Apps</span>
-      <div class="iframe-grid">
-        <iframe class="embed-frame" src="https://wiredove.net/" title="Wiredove" loading="lazy"></iframe>
-        <iframe class="embed-frame" src="https://in.anproto.com/" title="In ANProto" loading="lazy"></iframe>
+      <span class="kicker">How ANProto compares to 10+ years of protocols</span>
+      <div class="table-stamps">
+        ${tableHtml}
       </div>
-      <div class="footer">Slide 6 / 7</div>
+      <div class="footer">Slide 6 / 12</div>
     </section>
 
     <section class="slide">
-      <span class="kicker">Asks</span>
-      <h2>What are my asks?</h2>
-      <div class="footer">Slide 7 / 7</div>
+      <span class="kicker">How ANProto compares to 10+ years of protocols</span>
+      <div class="table-gray-ssb table-stamps">
+        ${tableHtml}
+        <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
+      </div>
+      <div class="footer">Slide 7 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">How ANProto compares to 10+ years of protocols</span>
+      <div class="table-gray-ssb table-gray-activitypub table-stamps">
+        ${tableHtml}
+        <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
+        <div class="stamp stamp-activitypub">INSECURE</div>
+      </div>
+      <div class="footer">Slide 8 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">How ANProto compares to 10+ years of protocols</span>
+      <div class="table-gray-ssb table-gray-activitypub table-gray-nostr table-gray-farcaster table-stamps">
+        ${tableHtml}
+        <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
+        <div class="stamp stamp-activitypub">INSECURE</div>
+        <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
+      </div>
+      <div class="footer">Slide 9 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Bluesky is actually THE TITANIC?</span>
+      <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
+      <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
+      <div class="footer">Slide 10 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Wiredove</span>
+      <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
+      <p><strong>Behold!</strong> Replicated social media. Authenticated posts via QR Code, URL, WebRTC, and Websockets!</p>
+      <div class="footer">Slide 11 / 12</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Finally...</span>
+      <div class="asks-grid">
+        <div>
+          <div class="asks-card">
+            <h3>What's working</h3>
+            <ul>
+              <li>Coding agents</li>
+              <li>The protocol is done</li>
+              <li>Bandwidth and compute</li>
+              <li>Implemented in JS, Rust, Go, and now Python!</li>
+            </ul>
+          </div>
+          <div class="asks-card">
+            <h3>What's not</h3>
+            <ul>
+              <li>Social media fatigue</li>
+              <li>Network effect</li>
+            </ul>
+          </div>
+        </div>
+        <div class="asks-side">
+          <div class="asks-card">
+            <h3>Asks</h3>
+            <ul>
+              <li>What do you need to know to explore decentralized social media?</li>
+              <li>How should this look ten years from now?</li>
+              <li>How to grow the dev community?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer">Slide 12 / 12</div>
     </section>
   </main>
 
