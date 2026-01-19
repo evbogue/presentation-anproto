@@ -223,7 +223,7 @@ async function renderSlideDeck(): Promise<string> {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px 20px 72px;
+      padding: 5px;
     }
 
     main {
@@ -233,8 +233,7 @@ async function renderSlideDeck(): Promise<string> {
 
     .slide {
       display: none;
-      min-height: 72vh;
-      padding: 48px 56px;
+      padding: 3em;
       background: var(--card);
       border-radius: 28px;
       box-shadow: 0 22px 50px var(--shadow);
@@ -311,6 +310,17 @@ async function renderSlideDeck(): Promise<string> {
       border: 1px solid rgba(194, 70, 43, 0.35);
       color: var(--ink);
       font-weight: 600;
+    }
+
+    .callout.final-cta {
+      position: absolute;
+      right: 36px;
+      bottom: 40px;
+      margin: 0;
+      max-width: 320px;
+      font-size: 1.35rem;
+      background: rgba(46, 125, 50, 0.18);
+      border-color: rgba(46, 125, 50, 0.45);
     }
 
     .accent-block {
@@ -444,7 +454,7 @@ async function renderSlideDeck(): Promise<string> {
 
     .embed-frame {
       width: 100%;
-      height: clamp(360px, 60vh, 560px);
+      height: clamp(420px, 72vh, 720px);
       border: 1px solid rgba(31, 26, 23, 0.12);
       border-radius: 18px;
       background: #fff;
@@ -453,6 +463,38 @@ async function renderSlideDeck(): Promise<string> {
 
     .embed-frame.half {
       height: clamp(240px, 45vh, 420px);
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .demo-copy h2 {
+      margin-top: 0;
+    }
+
+    .demo-copy ul {
+      margin: 0 0 16px;
+    }
+
+    .demo-quote {
+      margin: 0;
+      padding: 14px 16px;
+      border-left: 4px solid rgba(194, 70, 43, 0.6);
+      background: rgba(44, 93, 125, 0.08);
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .demo-quote a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(194, 70, 43, 0.4);
+      font-weight: 600;
     }
 
     .iframe-grid {
@@ -516,6 +558,22 @@ async function renderSlideDeck(): Promise<string> {
 
     .asks-side {
       text-align: left;
+    }
+
+    .asks-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--accent-2);
+    }
+
+    .qr-code {
+      display: block;
+      width: 225px;
+      height: 225px;
+      margin-top: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 26, 23, 0.12);
     }
 
     .bio-photo {
@@ -588,10 +646,11 @@ async function renderSlideDeck(): Promise<string> {
     }
 
     @media (max-width: 720px) {
-      .slide { padding: 32px 28px; min-height: 70vh; }
+      .slide { padding: 3em; }
       table { font-size: 0.8rem; }
-      .embed-frame { height: clamp(300px, 50vh, 420px); }
+      .embed-frame { height: clamp(340px, 58vh, 480px); }
       .embed-frame.half { height: clamp(220px, 38vh, 360px); }
+      .demo-layout { grid-template-columns: 1fr; }
       .risks-grid { grid-template-columns: 1fr; }
       .risk-layout { grid-template-columns: 1fr; }
       .topology-layout { grid-template-columns: 1fr; }
@@ -606,7 +665,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="hero">
         <img class="logo" src="/anproto-logo.png" alt="ANProto logo" />
         <h1>ANProto</h1>
-        <p>Authenticated Non-networked Protocol</p>
+        <p>Authenticated Non-networked Protocol<br />or ANother Protocol</p>
       </div>
       <div class="footer">Slide 1 / 12</div>
     </section>
@@ -638,14 +697,13 @@ async function renderSlideDeck(): Promise<string> {
             <img src="/pfd.jpg" alt="Personal flotation device" />
             <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
           </figure>
-          <p class="callout">No one cares about decentralization until something happens...</p>
+          <p class="callout">No one cares about decentralization until something happens.<br />As a famous historian once remarked: "Ooh, look what you made me do..."</p>
         </div>
       </div>
       <div class="footer">Slide 3 / 12</div>
     </section>
 
     <section class="slide">
-      <span class="kicker">Distributed / Decentralized / Centralized</span>
       <figure class="image-card">
         <img src="/comparison.png" alt="Boating decentralization comparison" />
       </figure>
@@ -654,7 +712,18 @@ async function renderSlideDeck(): Promise<string> {
 
     <section class="slide">
       <span class="kicker">AnProto Demo</span>
-      <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
+      <div class="demo-layout">
+        <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
+        <div class="demo-copy">
+          <h2>What is ANProto?</h2>
+          <ul>
+            <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
+            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, USB, Bluetooth, NFC, LoRa, WebSockets, Fetch API, Chaching.social, LinkedIn. Works offline.</li>
+            <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
+          </ul>
+          <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
+        </div>
+      </div>
       <div class="footer">Slide 5 / 12</div>
     </section>
 
@@ -711,7 +780,6 @@ async function renderSlideDeck(): Promise<string> {
     </section>
 
     <section class="slide">
-      <span class="kicker">Finally...</span>
       <div class="asks-grid">
         <div>
           <div class="asks-card">
@@ -728,6 +796,7 @@ async function renderSlideDeck(): Promise<string> {
             <ul>
               <li>Social media fatigue</li>
               <li>Network effect</li>
+              <li><a href="https://moxie.org/2016/03/04/ecosystem.html">The Ecosystem Is Moving</a> by Moxie Marlinspike?</li>
             </ul>
           </div>
         </div>
@@ -735,10 +804,14 @@ async function renderSlideDeck(): Promise<string> {
           <div class="asks-card">
             <h3>Asks</h3>
             <ul>
+              <li>Free kayaking! Try ANProto today for a chance to win! *terms and conditions apply.</li>
+              <li>Looking for five app devs, influencers, and event organizers to build relationships with this year.</li>
               <li>What do you need to know to explore decentralized social media?</li>
-              <li>How should this look ten years from now?</li>
-              <li>How to grow the dev community?</li>
             </ul>
+            <a class="asks-link" href="https://wiredove.net/#ev">https://wiredove.net/#ev</a>
+            <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
+              <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
+            </a>
           </div>
         </div>
       </div>
