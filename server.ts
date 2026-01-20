@@ -697,7 +697,7 @@ async function renderSlideDeck(): Promise<string> {
             <img src="/pfd.jpg" alt="Personal flotation device" />
             <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
           </figure>
-          <p class="callout">No one cares about decentralization until something happens.<br />As a famous historian once remarked: "Ooh, look what you made me do..."</p>
+          <p class="callout">No one cares about decentralization until something happens.<br />[Cue Taylor Swift joke]</p>
         </div>
       </div>
       <div class="footer">Slide 3 / 12</div>
