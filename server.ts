@@ -34,6 +34,15 @@ function escapeHtml(text: string): string {
 }
 
 function parseTable(markdown: string): string | null {
+  const logoMap: Record<string, { src: string; alt: string }> = {
+    SSB: { src: "/hermies-256.png", alt: "SSB logo" },
+    ActivityPub: { src: "/activitypub-logo.png", alt: "ActivityPub logo" },
+    ANProto: { src: "/anproto-logo.png", alt: "ANProto logo" },
+    ATProto: { src: "/atproto.jpeg", alt: "ATProto logo" },
+    Nostr: { src: "/nostr.png", alt: "Nostr logo" },
+    Farcaster: { src: "/farcaster.jpeg", alt: "Farcaster logo" },
+  };
+
   const lines = markdown.split(/\r?\n/);
   for (let i = 0; i < lines.length - 1; i++) {
     const header = lines[i].trim();
@@ -56,7 +65,20 @@ function parseTable(markdown: string): string | null {
     }
 
     const headerHtml = headerCells
-      .map((c) => `<th>${escapeHtml(c)}</th>`)
+      .map((c) => {
+        const logo = logoMap[c];
+        if (!logo) {
+          return `<th>${escapeHtml(c)}</th>`;
+        }
+        return `
+          <th>
+            <div class="table-head">
+              <img class="table-logo" src="${logo.src}" alt="${logo.alt}" />
+              <span>${escapeHtml(c)}</span>
+            </div>
+          </th>
+        `;
+      })
       .join("");
     const bodyHtml = rows
       .map((row) => `<tr>${row.map((c) => `<td>${escapeHtml(c)}</td>`).join("")}</tr>`)
@@ -289,6 +311,26 @@ async function renderSlideDeck(): Promise<string> {
       filter: drop-shadow(0 12px 18px rgba(194, 70, 43, 0.25));
     }
 
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(194, 70, 43, 0.35);
+      background: rgba(194, 70, 43, 0.08);
+      color: var(--accent-2);
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .hero-link:hover,
+    .hero-link:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(31, 26, 23, 0.15);
+    }
+
     .grid {
       display: grid;
       gap: 24px;
@@ -345,6 +387,9 @@ async function renderSlideDeck(): Promise<string> {
       background: rgba(44, 93, 125, 0.12);
       font-weight: 600;
     }
+    th:first-child {
+      text-align: left;
+    }
     tr:nth-child(even) td { background: rgba(31, 26, 23, 0.03); }
 
     .table-gray-ssb th:nth-child(2),
@@ -375,6 +420,26 @@ async function renderSlideDeck(): Promise<string> {
 
     .table-stamps {
       position: relative;
+    }
+
+    .table-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .table-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid rgba(31, 26, 23, 0.15);
+      background: #fff;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(31, 26, 23, 0.12);
     }
 
     .table-stamps table {
@@ -666,6 +731,7 @@ async function renderSlideDeck(): Promise<string> {
         <img class="logo" src="/anproto-logo.png" alt="ANProto logo" />
         <h1>ANProto</h1>
         <p>Authenticated Non-networked Protocol<br />or ANother Protocol</p>
+        <a class="hero-link" href="https://anproto.com">anproto.com</a>
       </div>
       <div class="footer">Slide 1 / 12</div>
     </section>
@@ -697,7 +763,7 @@ async function renderSlideDeck(): Promise<string> {
             <img src="/pfd.jpg" alt="Personal flotation device" />
             <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
           </figure>
-          <p class="callout">No one cares about decentralization until something happens.<br />[Cue Taylor Swift joke]</p>
+          <p class="callout">No one cares about decentralization until something happens.</p>
         </div>
       </div>
       <div class="footer">Slide 3 / 12</div>
@@ -718,7 +784,7 @@ async function renderSlideDeck(): Promise<string> {
           <h2>What is ANProto?</h2>
           <ul>
             <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
-            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
+            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
             <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
           </ul>
           <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
