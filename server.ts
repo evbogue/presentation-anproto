@@ -901,7 +901,7 @@ async function renderSlideDeck(): Promise<string> {
         <div class="image-stack">
           <figure class="image-card">
             <img class="img-square-centered" src="https://i.ibb.co/23HQ6Mvr/image.png" alt="Personal flotation device" />
-            <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
+            <figcaption class="topology-caption">corporate social networks die</figcaption>
           </figure>
           <p class="callout">No one cares about decentralization until something happens.</p>
         </div>
