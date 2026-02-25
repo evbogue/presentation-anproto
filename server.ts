@@ -865,7 +865,9 @@ async function renderSlideDeck(): Promise<string> {
 </head>
 <body>
   <main>
-    <section class="slide active">
+    
+
+<section class="slide active">
       <div class="hero">
         <img class="logo" src="/anproto-logo.png" alt="ANProto logo" />
         <h1>ANProto</h1>
@@ -873,10 +875,10 @@ async function renderSlideDeck(): Promise<string> {
         <p class="event-flag">Web 3 Weekends · Feb 27 2026</p>
         <a class="hero-link" href="https://anproto.com">anproto.com</a>
       </div>
-      <div class="footer">Slide 1 / 17</div>
+      <div class="footer">Slide 1 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <div class="bio">
         <img class="bio-photo" src="/IMG_6743.jpg" alt="Portrait photo" />
         <div>
@@ -884,10 +886,10 @@ async function renderSlideDeck(): Promise<string> {
           <p>Professional kayaker by summer, protocol dev by winter.</p>
         </div>
       </div>
-      <div class="footer">Slide 2 / 17</div>
+      <div class="footer">Slide 2 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">Centralized Social Risks</span>
       <div class="risk-layout">
         <div>
@@ -906,18 +908,27 @@ async function renderSlideDeck(): Promise<string> {
           <p class="callout">No one cares about decentralization until something happens.</p>
         </div>
       </div>
-      <div class="footer">Slide 3 / 17</div>
+      <div class="footer">Slide 3 / 16</div>
     </section>
 
-    <section class="slide">
-      <span class="kicker">Illustrating the problem with centralized social</span>
-      <figure class="image-card comparison-card uninvert">
-        <img src="/image.png" alt="Boating decentralization comparison" />
-      </figure>
-      <div class="footer">Slide 4 / 17</div>
+<section class="slide">
+      <span class="kicker">AnProto Demo</span>
+      <div class="demo-layout">
+        <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
+        <div class="demo-copy">
+          <h2>What is ANProto?</h2>
+          <ul>
+            <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
+            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
+            <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
+          </ul>
+          <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
+        </div>
+      </div>
+      <div class="footer">Slide 4 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">A brief history...</span>
       <div class="hero">
         <img class="logo" src="/google-plus.svg" alt="Google+ logo" />
@@ -932,18 +943,18 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <p>2013+: quit Google and went looking for an exit: diaspora · Urbit · tent · cjdns · yggdrasil</p>
       </div>
-      <div class="footer">Slide 5 / 17</div>
+      <div class="footer">Slide 5 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">Discovered Secure-Scuttlebot circa 2014</span>
       <div class="demo-layout one-col">
         <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 6 / 17</div>
+      <div class="footer">Slide 6 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">try ssb right now</span>
       <div class="demo-layout ssb-layout">
         <div class="ssb-left">
@@ -953,54 +964,37 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <iframe class="embed-frame" src="https://ssb.evbogue.com/" title="Secure Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 7 / 17</div>
+      <div class="footer">Slide 7 / 16</div>
     </section>
 
-    <section class="slide">
-      <span class="kicker">AnProto Demo</span>
-      <div class="demo-layout">
-        <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
-        <div class="demo-copy">
-          <h2>What is ANProto?</h2>
-          <ul>
-            <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
-            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
-            <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
-          </ul>
-          <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
-        </div>
-      </div>
-      <div class="footer">Slide 8 / 17</div>
-    </section>
-
-    <section class="slide">
+<section class="slide">
       <span class="kicker">How ANProto compares to 10+ years of protocols</span>
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 9 / 17</div>
+      <div class="footer">Slide 8 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">How ANProto compares to 10+ years of protocols</span>
       <div class="table-gray-ssb table-stamps">
         ${tableHtml}
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
       </div>
-      <div class="footer">Slide 10 / 17</div>
+      <div class="footer">Slide 9 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">How ANProto compares to 10+ years of protocols</span>
       <div class="table-gray-ssb table-gray-activitypub table-stamps">
         ${tableHtml}
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 11 / 17</div>
+      <div class="footer">Slide 10 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">How ANProto compares to 10+ years of protocols</span>
       <div class="table-gray-ssb table-gray-activitypub table-gray-nostr table-gray-farcaster table-stamps">
         ${tableHtml}
@@ -1008,19 +1002,17 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 12 / 17</div>
+      <div class="footer">Slide 11 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">Bluesky is actually THE TITANIC?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 13 / 17</div>
+      <div class="footer">Slide 12 / 16</div>
     </section>
 
-    <!-- moved: AnProto Demo slide -->
-
-    <section class="slide">
+<section class="slide">
       <span class="kicker">Data structures across protocols</span>
       <div class="structure-grid">
         <div class="structure-card">
@@ -1120,10 +1112,10 @@ kayak meetup at 6pm</code></pre>
           <!-- removed -->
         </div>
       </div>
-      <div class="footer">Slide 14 / 17</div>
+      <div class="footer">Slide 13 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">Wiredove</span>
       <div class="demo-layout">
         <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
@@ -1131,10 +1123,10 @@ kayak meetup at 6pm</code></pre>
           <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
         </a>
       </div>
-      <div class="footer">Slide 15 / 17</div>
+      <div class="footer">Slide 14 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">The future of ANProto</span>
       <div class="demo-layout" style="grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);">
         <div>
@@ -1153,16 +1145,18 @@ kayak meetup at 6pm</code></pre>
           <img src="/agent-neural.png" alt="Agentic Neural-networked Protocol illustration" style="width: 100%; height: auto; display: block; border-radius: 12px;" />
         </figure>
       </div>
-      <div class="footer">Slide 16 / 17</div>
+      <div class="footer">Slide 15 / 16</div>
     </section>
 
-    <section class="slide">
+<section class="slide">
       <span class="kicker">So how can we keep offline first social networks from failing?</span>
       <div class="hero">
         <h1>The Rise and Fall of Offline Social Networks</h1>
       </div>
-      <div class="footer">Slide 17 / 17</div>
+      <div class="footer">Slide 16 / 16</div>
     </section>
+
+
 
   </main>
 
