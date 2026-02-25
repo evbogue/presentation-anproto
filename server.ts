@@ -867,6 +867,8 @@ async function renderSlideDeck(): Promise<string> {
   <main>
     
 
+
+
 <section class="slide active">
       <div class="hero">
         <img class="logo" src="/anproto-logo.png" alt="ANProto logo" />
@@ -875,7 +877,7 @@ async function renderSlideDeck(): Promise<string> {
         <p class="event-flag">Web 3 Weekends · Feb 27 2026</p>
         <a class="hero-link" href="https://anproto.com">anproto.com</a>
       </div>
-      <div class="footer">Slide 1 / 16</div>
+      <div class="footer">Slide 1 / 17</div>
     </section>
 
 <section class="slide">
@@ -886,7 +888,7 @@ async function renderSlideDeck(): Promise<string> {
           <p>Professional kayaker by summer, protocol dev by winter.</p>
         </div>
       </div>
-      <div class="footer">Slide 2 / 16</div>
+      <div class="footer">Slide 2 / 17</div>
     </section>
 
 <section class="slide">
@@ -908,7 +910,7 @@ async function renderSlideDeck(): Promise<string> {
           <p class="callout">No one cares about decentralization until something happens.</p>
         </div>
       </div>
-      <div class="footer">Slide 3 / 16</div>
+      <div class="footer">Slide 3 / 17</div>
     </section>
 
 <section class="slide">
@@ -925,7 +927,7 @@ async function renderSlideDeck(): Promise<string> {
           <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
         </div>
       </div>
-      <div class="footer">Slide 4 / 16</div>
+      <div class="footer">Slide 4 / 17</div>
     </section>
 
 <section class="slide">
@@ -943,7 +945,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <p>2013+: quit Google and went looking for an exit: diaspora · Urbit · tent · cjdns · yggdrasil</p>
       </div>
-      <div class="footer">Slide 5 / 16</div>
+      <div class="footer">Slide 5 / 17</div>
     </section>
 
 <section class="slide">
@@ -951,7 +953,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="demo-layout one-col">
         <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 6 / 16</div>
+      <div class="footer">Slide 6 / 17</div>
     </section>
 
 <section class="slide">
@@ -964,7 +966,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <iframe class="embed-frame" src="https://ssb.evbogue.com/" title="Secure Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 7 / 16</div>
+      <div class="footer">Slide 7 / 17</div>
     </section>
 
 <section class="slide">
@@ -972,7 +974,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 8 / 16</div>
+      <div class="footer">Slide 8 / 17</div>
     </section>
 
 <section class="slide">
@@ -981,7 +983,7 @@ async function renderSlideDeck(): Promise<string> {
         ${tableHtml}
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
       </div>
-      <div class="footer">Slide 9 / 16</div>
+      <div class="footer">Slide 9 / 17</div>
     </section>
 
 <section class="slide">
@@ -991,7 +993,7 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 10 / 16</div>
+      <div class="footer">Slide 10 / 17</div>
     </section>
 
 <section class="slide">
@@ -1002,14 +1004,14 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 11 / 16</div>
+      <div class="footer">Slide 11 / 17</div>
     </section>
 
 <section class="slide">
       <span class="kicker">Bluesky is actually THE TITANIC?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 12 / 16</div>
+      <div class="footer">Slide 12 / 17</div>
     </section>
 
 <section class="slide">
@@ -1112,7 +1114,7 @@ kayak meetup at 6pm</code></pre>
           <!-- removed -->
         </div>
       </div>
-      <div class="footer">Slide 13 / 16</div>
+      <div class="footer">Slide 13 / 17</div>
     </section>
 
 <section class="slide">
@@ -1123,7 +1125,7 @@ kayak meetup at 6pm</code></pre>
           <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
         </a>
       </div>
-      <div class="footer">Slide 14 / 16</div>
+      <div class="footer">Slide 14 / 17</div>
     </section>
 
 <section class="slide">
@@ -1145,7 +1147,15 @@ kayak meetup at 6pm</code></pre>
           <img src="/agent-neural.png" alt="Agentic Neural-networked Protocol illustration" style="width: 100%; height: auto; display: block; border-radius: 12px;" />
         </figure>
       </div>
-      <div class="footer">Slide 15 / 16</div>
+      <div class="footer">Slide 15 / 17</div>
+    </section>
+
+<section class="slide">
+      <span class="kicker">Chaching.social</span>
+      <div class="demo-layout one-col">
+        <iframe class="embed-frame" src="https://chaching.social/communities/founder-fridays?id=vpgFBQLBuhv6Wehlfwky" title="Chaching.social" loading="lazy"></iframe>
+      </div>
+      <div class="footer">Slide 16 / 17</div>
     </section>
 
 <section class="slide">
@@ -1153,8 +1163,10 @@ kayak meetup at 6pm</code></pre>
       <div class="hero">
         <h1>The Rise and Fall of Offline Social Networks</h1>
       </div>
-      <div class="footer">Slide 16 / 16</div>
+      <div class="footer">Slide 17 / 17</div>
     </section>
+
+
 
 
 
