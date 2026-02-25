@@ -692,6 +692,14 @@ async function renderSlideDeck(): Promise<string> {
       border-radius: 12px;
     }
 
+    .img-square-centered {
+      width: min(320px, 40vw);
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
     .baran-card img {
       filter: invert(1) saturate(0.8);
     }
@@ -892,7 +900,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <div class="image-stack">
           <figure class="image-card">
-            <img src="https://i.ibb.co/23HQ6Mvr/image.png" alt="Personal flotation device" />
+            <img class="img-square-centered" src="https://i.ibb.co/23HQ6Mvr/image.png" alt="Personal flotation device" />
             <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
           </figure>
           <p class="callout">No one cares about decentralization until something happens.</p>
