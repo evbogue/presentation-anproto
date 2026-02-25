@@ -700,6 +700,40 @@ async function renderSlideDeck(): Promise<string> {
       margin: 0 auto;
     }
 
+    .anproto-share-snippet {
+      width: min(720px, 86vw);
+      margin: 0 auto 18px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .anproto-share-snippet h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+
+    .wiredove-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(0, 0, 0, 0.22);
+      color: var(--ink);
+      font-weight: 650;
+      cursor: default;
+    }
+
+    .wiredove-share img {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+    }
+
     .baran-card img {
       filter: none;
     }
@@ -1153,6 +1187,14 @@ kayak meetup at 6pm</code></pre>
 <section class="slide">
       <span class="kicker">Chaching.social</span>
       <div class="demo-layout one-col">
+        <div class="anproto-share-snippet">
+          <h3>Share w/ ANProto</h3>
+          <button class="wiredove-share" type="button">
+            Share
+            <img src="https://wiredove.net/favicon.ico" alt="Wiredove logo" />
+          </button>
+        </div>
+
         <iframe class="embed-frame" src="https://chaching.social/communities/founder-fridays?id=vpgFBQLBuhv6Wehlfwky" title="Chaching.social" loading="lazy"></iframe>
       </div>
       <div class="footer">Slide 16 / 17</div>
