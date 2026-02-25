@@ -35,7 +35,7 @@ function escapeHtml(text: string): string {
 
 function parseTable(markdown: string): string | null {
   const logoMap: Record<string, { src: string; alt: string }> = {
-    SSB: { src: "/hermies-256.png", alt: "SSB logo" },
+    SSB: { src: "/hermies.png", alt: "SSB logo" },
     ActivityPub: { src: "/activitypub-logo.png", alt: "ActivityPub logo" },
     ANProto: { src: "/anproto-logo.png", alt: "ANProto logo" },
     ATProto: { src: "/atproto.jpeg", alt: "ATProto logo" },
@@ -220,15 +220,16 @@ async function renderSlideDeck(): Promise<string> {
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
     :root {
-      color-scheme: light;
-      --bg: #f6f1e9;
-      --bg-2: #f2e6d7;
-      --ink: #1f1a17;
-      --muted: #6a5f57;
-      --accent: #c2462b;
-      --accent-2: #2c5d7d;
-      --card: #fbf7f0;
-      --shadow: rgba(31, 26, 23, 0.18);
+      color-scheme: dark;
+      --bg: #01040a;
+      --bg-2: #020b16;
+      --ink: #f4fbff;
+      --muted: #a8bad0;
+      --accent: #31f0ff;
+      --accent-2: #ff5cbb;
+      --card: #0b111d;
+      --shadow: rgba(0, 0, 0, 0.55);
+      --border: #31f0ff;
     }
 
     * { box-sizing: border-box; }
@@ -239,9 +240,9 @@ async function renderSlideDeck(): Promise<string> {
       font-family: "Inter", "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 20%, rgba(194, 70, 43, 0.18), transparent 55%),
-        radial-gradient(circle at 85% 25%, rgba(44, 93, 125, 0.2), transparent 50%),
-        linear-gradient(135deg, var(--bg), var(--bg-2));
+        radial-gradient(circle at 20% 20%, rgba(49, 240, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 80% 15%, rgba(255, 92, 187, 0.14), transparent 45%),
+        linear-gradient(145deg, var(--bg), var(--bg-2));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -259,10 +260,16 @@ async function renderSlideDeck(): Promise<string> {
       background: var(--card);
       border-radius: 28px;
       box-shadow: 0 22px 50px var(--shadow);
-      border: 1px solid rgba(31, 26, 23, 0.08);
+      border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
       animation: fadeIn 500ms ease;
+      transition: border-color 200ms ease, transform 150ms ease;
+    }
+
+    .slide:hover {
+      border-color: var(--accent-2);
+      transform: translateY(-4px);
     }
 
     .slide::after {
@@ -305,10 +312,22 @@ async function renderSlideDeck(): Promise<string> {
       gap: 18px;
     }
 
+    .logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
     .logo {
       width: clamp(120px, 22vw, 200px);
       height: auto;
       filter: drop-shadow(0 12px 18px rgba(194, 70, 43, 0.25));
+    }
+
+    .logo-invert {
+      filter: invert(1) drop-shadow(0 12px 18px rgba(194, 70, 43, 0.25));
     }
 
     .hero-link {
@@ -331,6 +350,18 @@ async function renderSlideDeck(): Promise<string> {
       box-shadow: 0 8px 18px rgba(31, 26, 23, 0.15);
     }
 
+    .event-flag {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--accent-2);
+      border: 1px solid rgba(44, 93, 125, 0.35);
+      border-radius: 999px;
+      padding: 6px 14px;
+      background: rgba(44, 93, 125, 0.08);
+      margin: 0;
+    }
+
     .grid {
       display: grid;
       gap: 24px;
@@ -342,6 +373,51 @@ async function renderSlideDeck(): Promise<string> {
       border-radius: 18px;
       background: rgba(44, 93, 125, 0.08);
       border: 1px solid rgba(44, 93, 125, 0.2);
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .structure-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(4, 9, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .structure-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .structure-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .structure-card pre {
+      margin: 12px 0 8px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      overflow: auto;
+      max-height: 180px;
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+
+    .structure-card code {
+      font-family: "JetBrains Mono", "Source Code Pro", monospace;
+      color: var(--ink);
+      display: block;
+      white-space: pre-wrap;
     }
 
     .callout {
@@ -377,20 +453,22 @@ async function renderSlideDeck(): Promise<string> {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.95rem;
-      background: #fff;
+      background: rgba(15, 24, 37, 0.85);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(31, 26, 23, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
-    th, td { padding: 10px 12px; text-align: left; }
+    th, td { padding: 10px 12px; text-align: left; color: var(--ink); }
     th {
-      background: rgba(44, 93, 125, 0.12);
+      background: rgba(255, 255, 255, 0.05);
       font-weight: 600;
+      color: var(--accent);
     }
     th:first-child {
       text-align: left;
     }
-    tr:nth-child(even) td { background: rgba(31, 26, 23, 0.03); }
+    tr:nth-child(even) td { background: rgba(255, 255, 255, 0.03); }
+    tr:nth-child(odd) td { background: rgba(255, 255, 255, 0.01); }
 
     .table-gray-ssb th:nth-child(2),
     .table-gray-ssb td:nth-child(2) {
@@ -437,9 +515,9 @@ async function renderSlideDeck(): Promise<string> {
       height: 26px;
       border-radius: 6px;
       border: 1px solid rgba(31, 26, 23, 0.15);
-      background: #fff;
+      background: var(--card);
       object-fit: cover;
-      box-shadow: 0 4px 10px rgba(31, 26, 23, 0.12);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
     .table-stamps table {
@@ -450,13 +528,13 @@ async function renderSlideDeck(): Promise<string> {
     .stamp {
       position: absolute;
       padding: 6px 14px;
-      border: 2px solid rgba(194, 70, 43, 0.7);
+      border: 2px solid var(--border);
       border-radius: 6px;
-      color: rgba(194, 70, 43, 0.85);
+      color: var(--accent-2);
       font-weight: 700;
       text-transform: uppercase;
-      background: rgba(251, 247, 240, 0.9);
-      box-shadow: 0 8px 18px rgba(31, 26, 23, 0.18);
+      background: rgba(4, 9, 20, 0.85);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
       pointer-events: none;
       white-space: pre;
       line-height: 1.1;
@@ -522,8 +600,8 @@ async function renderSlideDeck(): Promise<string> {
       height: clamp(420px, 72vh, 720px);
       border: 1px solid rgba(31, 26, 23, 0.12);
       border-radius: 18px;
-      background: #fff;
-      box-shadow: 0 18px 40px rgba(31, 26, 23, 0.12);
+      background: var(--card);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
     }
 
     .embed-frame.half {
@@ -536,6 +614,21 @@ async function renderSlideDeck(): Promise<string> {
       gap: 24px;
       align-items: start;
     }
+
+    .ssb-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    }
+
+    .ssb-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+      gap: 14px;
+    }
+
+    /* qr-panel styles removed (QR codes are now shown without surrounding UI) */
 
     .demo-copy h2 {
       margin-top: 0;
@@ -576,10 +669,10 @@ async function renderSlideDeck(): Promise<string> {
     }
 
     .image-card {
-      background: #fff;
+      background: var(--card);
       border-radius: 18px;
-      border: 1px solid rgba(31, 26, 23, 0.12);
-      box-shadow: 0 18px 40px rgba(31, 26, 23, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
       padding: 14px;
     }
 
@@ -594,6 +687,39 @@ async function renderSlideDeck(): Promise<string> {
       display: block;
       border-radius: 12px;
     }
+
+    .baran-card img {
+      filter: invert(1) saturate(0.8);
+    }
+
+    .comparison-card img {
+      filter: invert(1) hue-rotate(160deg) saturate(1.2);
+      mix-blend-mode: screen;
+    }
+
+    .comparison-card.uninvert img {
+      filter: none;
+      mix-blend-mode: normal;
+    }
+
+    .comparison-card {
+      background: #000;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 12px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .comparison-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+
 
     .bio {
       display: grid;
@@ -716,6 +842,7 @@ async function renderSlideDeck(): Promise<string> {
       .embed-frame { height: clamp(340px, 58vh, 480px); }
       .embed-frame.half { height: clamp(220px, 38vh, 360px); }
       .demo-layout { grid-template-columns: 1fr; }
+      .structure-grid { grid-template-columns: 1fr; }
       .risks-grid { grid-template-columns: 1fr; }
       .risk-layout { grid-template-columns: 1fr; }
       .topology-layout { grid-template-columns: 1fr; }
@@ -730,10 +857,11 @@ async function renderSlideDeck(): Promise<string> {
       <div class="hero">
         <img class="logo" src="/anproto-logo.png" alt="ANProto logo" />
         <h1>ANProto</h1>
-        <p>Authenticated Non-networked Protocol<br />or ANother Protocol</p>
+        <p>Authenticated Non-networked Protocol</p>
+        <p class="event-flag">Web 3 Weekends · Feb 27 2026</p>
         <a class="hero-link" href="https://anproto.com">anproto.com</a>
       </div>
-      <div class="footer">Slide 1 / 12</div>
+      <div class="footer">Slide 1 / 19</div>
     </section>
 
     <section class="slide">
@@ -744,7 +872,7 @@ async function renderSlideDeck(): Promise<string> {
           <p>Professional kayaker by summer, protocol dev by winter.</p>
         </div>
       </div>
-      <div class="footer">Slide 2 / 12</div>
+      <div class="footer">Slide 2 / 19</div>
     </section>
 
     <section class="slide">
@@ -753,27 +881,84 @@ async function renderSlideDeck(): Promise<string> {
         <div>
           <p><strong>What is Centralized Social</strong>? Facebook/Instagram, LinkedIn, X</p>
           ${risksHtml}
-          <figure class="image-card">
+          <figure class="image-card baran-card">
             <img src="https://berty.tech/blog/decentralized-distributed-centralized/decentralized2_huce764145a0a4ba92d2f6009192c4da0f_86406_857x0_resize_q100_lanczos_3.webp" alt="Diagram comparing centralized, decentralized, and distributed networks" />
             <figcaption class="topology-caption">Baran, P. (1964). On Distributed Communications, Memorandum RM-3420-PR.</figcaption>
           </figure>
         </div>
         <div class="image-stack">
           <figure class="image-card">
-            <img src="/pfd.jpg" alt="Personal flotation device" />
+            <img src="/pfd.png" alt="Personal flotation device" />
             <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
           </figure>
           <p class="callout">No one cares about decentralization until something happens.</p>
         </div>
       </div>
-      <div class="footer">Slide 3 / 12</div>
+      <div class="footer">Slide 3 / 19</div>
     </section>
 
     <section class="slide">
-      <figure class="image-card">
-        <img src="/comparison.png" alt="Boating decentralization comparison" />
+      <span class="kicker">Illustrating the problem with centralized social</span>
+      <figure class="image-card comparison-card uninvert">
+        <img src="/image.png" alt="Boating decentralization comparison" />
       </figure>
-      <div class="footer">Slide 4 / 12</div>
+      <div class="footer">Slide 4 / 19</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Got shadowbanned on Google+ in 2012</span>
+      <div class="hero">
+        <img class="logo" src="/google-plus.svg" alt="Google+ logo" />
+        <p>For writing about an exciting new open source project!</p>
+      </div>
+      <div class="footer">Slide 5 / 19</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">So I quit Google completely in 2013 to ...</span>
+      <div class="hero">
+        <div class="logos-row">
+          <img class="logo" style="width: clamp(160px, 26vw, 260px);" src="/urbit-logo.png" alt="Urbit logo" />
+          <!-- tent.io logo removed -->
+          <img class="logo logo-invert" style="width: clamp(130px, 20vw, 200px);" src="/diaspora-logo.svg" alt="Diaspora logo" />
+          <img class="logo logo-invert" style="width: clamp(140px, 20vw, 220px);" src="/cjdns-logo.png" alt="cjdns logo" />
+          <img class="logo logo-invert" style="width: clamp(90px, 14vw, 140px);" src="/yggdrasil-logo.svg" alt="Yggdrasil logo" />
+        </div>
+        <p>hung out on tent.io, tried diaspora, and listened to lectures from ~sorreg-namtyv — also did some mesh networking on cjdns and yggdrasil</p>
+      </div>
+      <div class="footer">Slide 6 / 19</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Discovered Secure-Scuttlebot circa 2014</span>
+      <div class="demo-layout ssb-layout">
+        <div class="ssb-left">
+          <img class="logo" src="/hermies.png" alt="SSB logo" />
+        </div>
+        <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
+      </div>
+      <div class="footer">Slide 7 / 19</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">But alas, the Manlyverse team scuttled the bot in 2019...</span>
+      <figure class="image-card">
+        <img src="/manlyverse-scuttled.png" alt="Manlyverse scuttled bot" />
+      </figure>
+      <div class="footer">Slide 8 / 19</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">but we raised the ol' boat from the depths with AI so you can try it right now</span>
+      <div class="demo-layout ssb-layout">
+        <div class="ssb-left">
+          <a href="https://ssb.evbogue.com/" aria-label="SSB demo link">
+            <img class="qr-code" style="width: 225px; height: 225px;" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fssb.evbogue.com%2F" alt="QR code for SSB demo" />
+          </a>
+        </div>
+        <iframe class="embed-frame" src="https://ssb.evbogue.com/" title="Secure Scuttlebot" loading="lazy"></iframe>
+      </div>
+      <div class="footer">Slide 9 / 19</div>
     </section>
 
     <section class="slide">
@@ -784,13 +969,13 @@ async function renderSlideDeck(): Promise<string> {
           <h2>What is ANProto?</h2>
           <ul>
             <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
-            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
+            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, <s>Chaching.social</s>, LinkedIn, messenger pigeon (?). Works offline.</li>
             <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
           </ul>
           <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
         </div>
       </div>
-      <div class="footer">Slide 5 / 12</div>
+      <div class="footer">Slide 10 / 19</div>
     </section>
 
     <section class="slide">
@@ -798,7 +983,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 6 / 12</div>
+      <div class="footer">Slide 11 / 19</div>
     </section>
 
     <section class="slide">
@@ -807,7 +992,7 @@ async function renderSlideDeck(): Promise<string> {
         ${tableHtml}
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
       </div>
-      <div class="footer">Slide 7 / 12</div>
+      <div class="footer">Slide 12 / 19</div>
     </section>
 
     <section class="slide">
@@ -817,7 +1002,7 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 8 / 12</div>
+      <div class="footer">Slide 13 / 19</div>
     </section>
 
     <section class="slide">
@@ -828,60 +1013,162 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 9 / 12</div>
+      <div class="footer">Slide 14 / 19</div>
     </section>
 
     <section class="slide">
       <span class="kicker">Bluesky is actually THE TITANIC?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 10 / 12</div>
+      <div class="footer">Slide 15 / 19</div>
+    </section>
+
+    <!-- moved: AnProto Demo slide -->
+
+    <section class="slide">
+      <span class="kicker">Data structures across protocols</span>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <h3>SSB</h3>
+          <pre><code>{
+  "previous": "%26AC+gU0t74jRGVeDY01...MnutGGHM=.sha256",
+  "author": "@hxGxqPrplLjRG2vtjQL87...0nNwE=.ed25519",
+  "sequence": 216,
+  "timestamp": 1442590513298,
+  "hash": "sha256",
+  "content": {
+    "type": "post",
+    "text": "Kayak club meetup"
+  },
+  "signature": "Sjq1C3yiKdmi1TWvNqxI...gmAQ==.sig.ed25519"
+}</code></pre>
+          <!-- removed -->
+        </div>
+        <div class="structure-card">
+          <h3>ActivityPub</h3>
+          <pre><code>{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Create",
+  "id": "https://social.example/alyssa/posts/a29a6843-9feb-4c74-a7f7-081b9c9201d3",
+  "to": ["https://chatty.example/ben/"],
+  "actor": "https://social.example/alyssa/",
+  "object": {
+    "type": "Note",
+    "id": "https://social.example/alyssa/posts/49e2d03d-b53a-4c4c-a95c-94a6abf45a19",
+    "attributedTo": "https://social.example/alyssa/",
+    "to": ["https://chatty.example/ben/"],
+    "content": "Want to kayak this weekend? I’ll bring the PFDs."
+  }
+}</code></pre>
+          <!-- removed -->
+        </div>
+        <div class="structure-card">
+          <h3>ANProto</h3>
+          <pre><code>evZSi/glsKR0c3xkOTYronA7Dxta07Ye/IeNw0+8oxg=Z8EjTyfVX/hijd9/L5CLnXrG2xeFN3Sbuo1rcXLomfgtMPEWDRrmef0Uuneo+/PHzMElBYPHD8F5UOpYGW4+AzE3MzYzMjExNDgyMDhtdW5EMUd0VDZQRXQyOFdYTFFIRVNub09vcVd2bFpsbXhVenpiZ0ZYK3dvPQ==
+
+1736321148208wZaEerzK06sAAjBrFAWtfDeOOdxwaOpaw0o7gg6jFHew=
+
+---
+name: ev
+previous: ZaEerzK06sAAjBrFAWtfDeOOdxwaOpaw0o7gg6jFHew=
+---
+kayak meetup at 6pm</code></pre>
+          <!-- removed -->
+        </div>
+        <div class="structure-card">
+          <h3>ATProto</h3>
+          <pre><code>{
+  "uri": "at://did:plc:abcd1234.../app.bsky.feed.post/3kxyz...",
+  "cid": "bafyreib...",
+  "value": {
+    "$type": "app.bsky.feed.post",
+    "text": "Hello from the kayak.",
+    "createdAt": "2026-02-21T17:50:00.000Z"
+  }
+}</code></pre>
+          <!-- removed -->
+        </div>
+        <div class="structure-card">
+          <h3>Nostr</h3>
+          <pre><code>{
+  "id": "5c83da77af1dec6d7289834998ad7aafbd9e2191396d75ec3cc27f5a77226f36",
+  "pubkey": "f7234bd4c1394dda46d09f35bd384dd30cc552ad5541990f98844fb06676e9ca",
+  "created_at": 1736321276,
+  "kind": 1,
+  "tags": [
+    ["e", "620de8079ea9c55988cfda4858728fdd7c6e4e8b40a34b0698a36d5dfc973c17", "wss://nostr.example.com"],
+    ["p", "73ae7bacc102822d17ecdbb981fb8089e7b3afc3a9e41d0e54a6bb4562e9f058"]
+  ],
+  "content": "Sunset kayak paddle",
+  "sig": "5b76507b808e24ed8ecb94b987c58684069dabd646328cedbef3bbb5e32fb2e2d237f5ff4dd7058703c3fe9b4467221d92a81adc0f86696846db77047ea90903"
+}</code></pre>
+          <!-- removed -->
+        </div>
+        <div class="structure-card">
+          <h3>Farcaster</h3>
+          <pre><code>{
+  "data": {
+    "fid": 1234,
+    "timestamp": 1736321276,
+    "network": "FARCASTER_NETWORK_MAINNET",
+    "castAddBody": {
+      "text": "Day 3 kayak log",
+      "mentions": [],
+      "mentionsPositions": [],
+      "embeds": []
+    }
+  },
+  "hash": "0a1b...",
+  "signature": "...",
+  "signer": "0x..."
+}</code></pre>
+          <!-- removed -->
+        </div>
+      </div>
+      <div class="footer">Slide 16 / 19</div>
     </section>
 
     <section class="slide">
       <span class="kicker">Wiredove</span>
-      <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
-      <div class="footer">Slide 11 / 12</div>
+      <div class="demo-layout">
+        <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
+        <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
+          <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
+        </a>
+      </div>
+      <div class="footer">Slide 17 / 19</div>
     </section>
 
     <section class="slide">
-      <div class="asks-grid">
+      <span class="kicker">The future of ANProto</span>
+      <div class="demo-layout" style="grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);">
         <div>
-          <div class="asks-card">
-            <h3>What's working</h3>
-            <ul>
-              <li>Coding agents</li>
-              <li>The protocol is done</li>
-              <li>Bandwidth and compute</li>
-              <li>Implemented in JS, Rust, Go, and now Python!</li>
-            </ul>
-          </div>
-          <div class="asks-card">
-            <h3>What's not</h3>
-            <ul>
-              <li>Social media fatigue</li>
-              <li>Network effect</li>
-              <li><a href="https://moxie.org/2016/03/04/ecosystem.html">The Ecosystem Is Moving</a> by Moxie Marlinspike?</li>
-            </ul>
-          </div>
+          <h2>Agentic Neural-networked Protocol</h2>
+          <ul>
+            <li>Make AI Web 3</li>
+            <li>Agents need pubkeys: stable, portable identities.</li>
+            <li>Signed outputs make agents accountable (who said what, when).</li>
+            <li>Public output creates a shared corpus: cache, reuse, and cite.</li>
+            <li>Prefer proofs + links over re-running models (avoid duplicated inference).</li>
+            <li>Sustainable compute: fewer redundant runs means less “ocean-boiling.”</li>
+          </ul>
+          <p style="margin-top: 28px; font-weight: 650; color: var(--ink);">And now we're announcing ANProto's partnership with OpenClaw! 🦞 <a href="https://wiredove.net/">Click here</a></p>
         </div>
-        <div class="asks-side">
-          <div class="asks-card">
-            <h3>Asks</h3>
-            <ul>
-              <li>Free kayaking! Try ANProto today for a chance to win! *terms and conditions apply.</li>
-              <li>Looking for five app devs, influencers, and event organizers to build relationships with this year.</li>
-              <li>What do you need to know to explore decentralized social media?</li>
-            </ul>
-            <a class="asks-link" href="https://wiredove.net/#ev">https://wiredove.net/#ev</a>
-            <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
-              <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
-            </a>
-          </div>
-        </div>
+        <figure class="image-card" style="margin: 0;">
+          <img src="/agent-neural.png" alt="Agentic Neural-networked Protocol illustration" style="width: 100%; height: auto; display: block; border-radius: 12px;" />
+        </figure>
       </div>
-      <div class="footer">Slide 12 / 12</div>
+      <div class="footer">Slide 18 / 19</div>
     </section>
+
+    <section class="slide">
+      <span class="kicker">So how can we keep offline first social networks from failing?</span>
+      <div class="hero">
+        <h1>The Rise and Fall of Offline Social Networks</h1>
+      </div>
+      <div class="footer">Slide 19 / 19</div>
+    </section>
+
   </main>
 
   <div class="nav" aria-label="Slide navigation"></div>
@@ -918,6 +1205,25 @@ async function renderSlideDeck(): Promise<string> {
         advance(1);
       } else if (event.key === "ArrowLeft" || event.key === "PageUp") {
         advance(-1);
+      }
+    });
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const swipeThreshold = 60;
+
+    window.addEventListener("touchstart", (event) => {
+      const touch = event.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    });
+
+    window.addEventListener("touchend", (event) => {
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThreshold) {
+        advance(deltaX < 0 ? 1 : -1);
       }
     });
   </script>
