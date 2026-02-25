@@ -936,7 +936,7 @@ async function renderSlideDeck(): Promise<string> {
     </section>
 
     <section class="slide">
-      <span class="kicker">but we raised the ol' boat from the depths with AI so you can try it right now</span>
+      <span class="kicker">try ssb right now</span>
       <div class="demo-layout ssb-layout">
         <div class="ssb-left">
           <a href="https://ssb.evbogue.com/" aria-label="SSB demo link">
