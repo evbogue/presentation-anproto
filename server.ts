@@ -615,6 +615,10 @@ async function renderSlideDeck(): Promise<string> {
       align-items: start;
     }
 
+    .demo-layout.one-col {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
     .ssb-layout {
       grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
     }
@@ -925,7 +929,7 @@ async function renderSlideDeck(): Promise<string> {
 
     <section class="slide">
       <span class="kicker">Discovered Secure-Scuttlebot circa 2014</span>
-      <div class="demo-layout">
+      <div class="demo-layout one-col">
         <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
       <div class="footer">Slide 6 / 17</div>
