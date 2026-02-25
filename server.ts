@@ -919,6 +919,8 @@ async function renderSlideDeck(): Promise<string> {
 
 
 
+
+
 <section class="slide active">
       <div class="hero">
         <img class="logo" src="/anproto-logo.png" alt="ANProto logo" />
@@ -981,6 +983,17 @@ async function renderSlideDeck(): Promise<string> {
     </section>
 
 <section class="slide">
+      <span class="kicker">Wiredove</span>
+      <div class="demo-layout">
+        <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
+        <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
+          <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
+        </a>
+      </div>
+      <div class="footer">Slide 5 / 17</div>
+    </section>
+
+<section class="slide">
       <span class="kicker">A brief history...</span>
       <div class="hero">
         <img class="logo" src="/google-plus.svg" alt="Google+ logo" />
@@ -995,7 +1008,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <p>2013+: quit Google and went looking for an exit: diaspora · Urbit · tent · cjdns · yggdrasil</p>
       </div>
-      <div class="footer">Slide 5 / 17</div>
+      <div class="footer">Slide 6 / 17</div>
     </section>
 
 <section class="slide">
@@ -1003,7 +1016,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="demo-layout one-col">
         <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 6 / 17</div>
+      <div class="footer">Slide 7 / 17</div>
     </section>
 
 <section class="slide">
@@ -1016,7 +1029,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <iframe class="embed-frame" src="https://ssb.evbogue.com/" title="Secure Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 7 / 17</div>
+      <div class="footer">Slide 8 / 17</div>
     </section>
 
 <section class="slide">
@@ -1024,7 +1037,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 8 / 17</div>
+      <div class="footer">Slide 9 / 17</div>
     </section>
 
 <section class="slide">
@@ -1033,7 +1046,7 @@ async function renderSlideDeck(): Promise<string> {
         ${tableHtml}
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
       </div>
-      <div class="footer">Slide 9 / 17</div>
+      <div class="footer">Slide 10 / 17</div>
     </section>
 
 <section class="slide">
@@ -1043,7 +1056,7 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 10 / 17</div>
+      <div class="footer">Slide 11 / 17</div>
     </section>
 
 <section class="slide">
@@ -1054,14 +1067,14 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 11 / 17</div>
+      <div class="footer">Slide 12 / 17</div>
     </section>
 
 <section class="slide">
       <span class="kicker">Bluesky is actually THE TITANIC?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 12 / 17</div>
+      <div class="footer">Slide 13 / 17</div>
     </section>
 
 <section class="slide">
@@ -1164,17 +1177,6 @@ kayak meetup at 6pm</code></pre>
           <!-- removed -->
         </div>
       </div>
-      <div class="footer">Slide 13 / 17</div>
-    </section>
-
-<section class="slide">
-      <span class="kicker">Wiredove</span>
-      <div class="demo-layout">
-        <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
-        <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
-          <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
-        </a>
-      </div>
       <div class="footer">Slide 14 / 17</div>
     </section>
 
@@ -1251,6 +1253,8 @@ kayak meetup at 6pm</code></pre>
       </div>
       <div class="footer">Slide 17 / 17</div>
     </section>
+
+
 
 
 
