@@ -988,7 +988,6 @@ async function renderSlideDeck(): Promise<string> {
       <span class="kicker">A brief history...</span>
       <div class="hero">
         <img class="logo" src="/google-plus.svg" alt="Google+ logo" />
-        <p>Google+</p>
         <p>2012: shadowbanned on Google+ for posting about open source.</p>
         <div class="logos-row">
           <img class="logo" style="width: clamp(160px, 26vw, 260px);" src="/urbit-logo.png" alt="Urbit logo" />
@@ -997,7 +996,7 @@ async function renderSlideDeck(): Promise<string> {
           <img class="logo logo-invert" style="width: clamp(140px, 20vw, 220px);" src="/cjdns-logo.png" alt="cjdns logo" />
           <img class="logo logo-invert" style="width: clamp(90px, 14vw, 140px);" src="/yggdrasil-logo.svg" alt="Yggdrasil logo" />
         </div>
-        <p>2013+: quit Google and went looking for an exit: diaspora · Urbit · tent · cjdns · yggdrasil</p>
+        <p>2013+: quit Google, hung out on tent.io, tried diaspora, and listened to lectures from ~sorreg-namtyv — also did some mesh networking on cjdns and yggdrasil</p>
       </div>
       <div class="footer">Slide 5 / 17</div>
     </section>
