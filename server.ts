@@ -1004,7 +1004,7 @@ async function renderSlideDeck(): Promise<string> {
 <section class="slide">
       <span class="kicker">Discovered Secure-Scuttlebot circa 2014</span>
       <div class="demo-layout one-col">
-        <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
+        <iframe class="embed-frame" src="https://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
       <div class="footer">Slide 6 / 17</div>
     </section>
