@@ -709,10 +709,21 @@ async function renderSlideDeck(): Promise<string> {
       background: rgba(255, 255, 255, 0.04);
     }
 
-    .anproto-share-snippet h3 {
-      margin: 0 0 10px;
-      font-size: 1.05rem;
-      color: var(--ink);
+    .anproto-share-snippet pre {
+      margin: 0 0 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(0, 0, 0, 0.28);
+      overflow: auto;
+      max-height: 240px;
+    }
+
+    .anproto-share-snippet code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.92rem;
+      color: rgba(244, 251, 255, 0.92);
+      white-space: pre;
     }
 
     .wiredove-share {
@@ -722,10 +733,15 @@ async function renderSlideDeck(): Promise<string> {
       padding: 10px 14px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(0, 0, 0, 0.22);
       color: var(--ink);
       font-weight: 650;
-      cursor: default;
+      cursor: pointer;
+    }
+
+    .wiredove-share-purple {
+      background: linear-gradient(90deg, #7c3aed, #a855f7);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 26px rgba(124, 58, 237, 0.35);
     }
 
     .wiredove-share img {
@@ -1188,11 +1204,39 @@ kayak meetup at 6pm</code></pre>
       <span class="kicker">Chaching.social</span>
       <div class="demo-layout one-col">
         <div class="anproto-share-snippet">
-          <h3>Share w/ ANProto</h3>
-          <button class="wiredove-share" type="button">
-            Share
+          <pre><code>&lt;button class="wiredove-share" id="anprotoShareButton"&gt;
+  Share on ANProto
+  &lt;img alt="Wiredove logo" /&gt;
+&lt;/button&gt;
+&lt;script type="module"&gt;
+  import { attachWiredoveShareButton } from 'https://pub.wiredove.net/share/share-button.js'
+
+  attachWiredoveShareButton(
+    document.querySelector('#anprotoShareButton'),
+    {
+      text: 'Check this out',
+      title: document.title,
+      url: window.location.href
+    }
+  )
+&lt;/script&gt;</code></pre>
+
+          <button class="wiredove-share wiredove-share-purple" id="anprotoShareButton" type="button">
+            Share on ANProto
             <img src="https://wiredove.net/favicon.ico" alt="Wiredove logo" />
           </button>
+
+          <script type="module">
+            import { attachWiredoveShareButton } from 'https://pub.wiredove.net/share/share-button.js'
+            attachWiredoveShareButton(
+              document.querySelector('#anprotoShareButton'),
+              {
+                text: 'Founder Fridays on Chaching.social',
+                title: document.title,
+                url: 'https://chaching.social/communities/founder-fridays?id=vpgFBQLBuhv6Wehlfwky'
+              }
+            )
+          </script>
         </div>
 
         <iframe class="embed-frame" src="https://chaching.social/communities/founder-fridays?id=vpgFBQLBuhv6Wehlfwky" title="Chaching.social" loading="lazy"></iframe>
