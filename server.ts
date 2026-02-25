@@ -1205,7 +1205,7 @@ kayak meetup at 6pm</code></pre>
       <div class="demo-layout one-col">
         <div class="anproto-share-snippet">
           <pre><code>&lt;button class="wiredove-share" id="anprotoShareButton"&gt;
-  Share on ANProto
+  Share
   &lt;img alt="Wiredove logo" /&gt;
 &lt;/button&gt;
 &lt;script type="module"&gt;
@@ -1222,7 +1222,7 @@ kayak meetup at 6pm</code></pre>
 &lt;/script&gt;</code></pre>
 
           <button class="wiredove-share wiredove-share-purple" id="anprotoShareButton" type="button">
-            Share on ANProto
+            Share
             <img src="https://wiredove.net/favicon.ico" alt="Wiredove logo" />
           </button>
 
