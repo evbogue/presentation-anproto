@@ -925,10 +925,7 @@ async function renderSlideDeck(): Promise<string> {
 
     <section class="slide">
       <span class="kicker">Discovered Secure-Scuttlebot circa 2014</span>
-      <div class="demo-layout ssb-layout">
-        <div class="ssb-left">
-          <img class="logo" src="/hermies.png" alt="SSB logo" />
-        </div>
+      <div class="demo-layout">
         <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
       <div class="footer">Slide 6 / 17</div>
