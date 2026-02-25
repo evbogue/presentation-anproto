@@ -701,7 +701,7 @@ async function renderSlideDeck(): Promise<string> {
     }
 
     .baran-card img {
-      filter: invert(1) saturate(0.8);
+      filter: none;
     }
 
     .comparison-card img {
