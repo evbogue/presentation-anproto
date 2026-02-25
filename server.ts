@@ -861,7 +861,7 @@ async function renderSlideDeck(): Promise<string> {
         <p class="event-flag">Web 3 Weekends · Feb 27 2026</p>
         <a class="hero-link" href="https://anproto.com">anproto.com</a>
       </div>
-      <div class="footer">Slide 1 / 18</div>
+      <div class="footer">Slide 1 / 17</div>
     </section>
 
     <section class="slide">
@@ -872,7 +872,7 @@ async function renderSlideDeck(): Promise<string> {
           <p>Professional kayaker by summer, protocol dev by winter.</p>
         </div>
       </div>
-      <div class="footer">Slide 2 / 18</div>
+      <div class="footer">Slide 2 / 17</div>
     </section>
 
     <section class="slide">
@@ -894,7 +894,7 @@ async function renderSlideDeck(): Promise<string> {
           <p class="callout">No one cares about decentralization until something happens.</p>
         </div>
       </div>
-      <div class="footer">Slide 3 / 18</div>
+      <div class="footer">Slide 3 / 17</div>
     </section>
 
     <section class="slide">
@@ -902,20 +902,11 @@ async function renderSlideDeck(): Promise<string> {
       <figure class="image-card comparison-card uninvert">
         <img src="/image.png" alt="Boating decentralization comparison" />
       </figure>
-      <div class="footer">Slide 4 / 18</div>
+      <div class="footer">Slide 4 / 17</div>
     </section>
 
     <section class="slide">
-      <span class="kicker">Got shadowbanned on Google+ in 2012</span>
-      <div class="hero">
-        <img class="logo" src="/google-plus.svg" alt="Google+ logo" />
-        <p>For writing about an exciting new open source project!</p>
-      </div>
-      <div class="footer">Slide 5 / 18</div>
-    </section>
-
-    <section class="slide">
-      <span class="kicker">So I quit Google completely in 2013 to ...</span>
+      <span class="kicker">A brief history...</span>
       <div class="hero">
         <div class="logos-row">
           <img class="logo" style="width: clamp(160px, 26vw, 260px);" src="/urbit-logo.png" alt="Urbit logo" />
@@ -924,9 +915,10 @@ async function renderSlideDeck(): Promise<string> {
           <img class="logo logo-invert" style="width: clamp(140px, 20vw, 220px);" src="/cjdns-logo.png" alt="cjdns logo" />
           <img class="logo logo-invert" style="width: clamp(90px, 14vw, 140px);" src="/yggdrasil-logo.svg" alt="Yggdrasil logo" />
         </div>
-        <p>hung out on tent.io, tried diaspora, and listened to lectures from ~sorreg-namtyv — also did some mesh networking on cjdns and yggdrasil</p>
+        <p>2012: shadowbanned on Google+ for posting about open source. No warning. No appeal.</p>
+        <p>2013+: quit Google and went looking for an exit: diaspora · Urbit · tent · cjdns · yggdrasil</p>
       </div>
-      <div class="footer">Slide 6 / 18</div>
+      <div class="footer">Slide 5 / 17</div>
     </section>
 
     <section class="slide">
@@ -937,7 +929,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <iframe class="embed-frame" src="http://scuttlebot.io/" title="Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 7 / 18</div>
+      <div class="footer">Slide 6 / 17</div>
     </section>
 
     <section class="slide">
@@ -950,7 +942,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <iframe class="embed-frame" src="https://ssb.evbogue.com/" title="Secure Scuttlebot" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 8 / 18</div>
+      <div class="footer">Slide 7 / 17</div>
     </section>
 
     <section class="slide">
@@ -967,7 +959,7 @@ async function renderSlideDeck(): Promise<string> {
           <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
         </div>
       </div>
-      <div class="footer">Slide 9 / 18</div>
+      <div class="footer">Slide 8 / 17</div>
     </section>
 
     <section class="slide">
@@ -975,7 +967,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 10 / 18</div>
+      <div class="footer">Slide 9 / 17</div>
     </section>
 
     <section class="slide">
@@ -984,7 +976,7 @@ async function renderSlideDeck(): Promise<string> {
         ${tableHtml}
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
       </div>
-      <div class="footer">Slide 11 / 18</div>
+      <div class="footer">Slide 10 / 17</div>
     </section>
 
     <section class="slide">
@@ -994,7 +986,7 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-ssb">SCUTTLED&#10;circa 2019</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 12 / 18</div>
+      <div class="footer">Slide 11 / 17</div>
     </section>
 
     <section class="slide">
@@ -1005,14 +997,14 @@ async function renderSlideDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 13 / 18</div>
+      <div class="footer">Slide 12 / 17</div>
     </section>
 
     <section class="slide">
       <span class="kicker">Bluesky is actually THE TITANIC?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 14 / 18</div>
+      <div class="footer">Slide 13 / 17</div>
     </section>
 
     <!-- moved: AnProto Demo slide -->
@@ -1117,7 +1109,7 @@ kayak meetup at 6pm</code></pre>
           <!-- removed -->
         </div>
       </div>
-      <div class="footer">Slide 15 / 18</div>
+      <div class="footer">Slide 14 / 17</div>
     </section>
 
     <section class="slide">
@@ -1128,7 +1120,7 @@ kayak meetup at 6pm</code></pre>
           <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
         </a>
       </div>
-      <div class="footer">Slide 16 / 18</div>
+      <div class="footer">Slide 15 / 17</div>
     </section>
 
     <section class="slide">
@@ -1150,7 +1142,7 @@ kayak meetup at 6pm</code></pre>
           <img src="/agent-neural.png" alt="Agentic Neural-networked Protocol illustration" style="width: 100%; height: auto; display: block; border-radius: 12px;" />
         </figure>
       </div>
-      <div class="footer">Slide 17 / 18</div>
+      <div class="footer">Slide 16 / 17</div>
     </section>
 
     <section class="slide">
@@ -1158,7 +1150,7 @@ kayak meetup at 6pm</code></pre>
       <div class="hero">
         <h1>The Rise and Fall of Offline Social Networks</h1>
       </div>
-      <div class="footer">Slide 18 / 18</div>
+      <div class="footer">Slide 17 / 17</div>
     </section>
 
   </main>
