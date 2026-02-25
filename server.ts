@@ -892,7 +892,7 @@ async function renderSlideDeck(): Promise<string> {
         </div>
         <div class="image-stack">
           <figure class="image-card">
-            <img src="/pfd.png" alt="Personal flotation device" />
+            <img src="https://i.ibb.co/23HQ6Mvr/image.png" alt="Personal flotation device" />
             <figcaption class="topology-caption">No one wants to wear their PFD.</figcaption>
           </figure>
           <p class="callout">No one cares about decentralization until something happens.</p>
