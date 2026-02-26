@@ -1072,19 +1072,7 @@ async function renderSlideDeck(): Promise<string> {
       <div class="structure-grid">
         <div class="structure-card">
           <h3>SSB</h3>
-          <pre><code>{
-  "previous": "%26AC+gU0t74jRGVeDY01...MnutGGHM=.sha256",
-  "author": "@hxGxqPrplLjRG2vtjQL87...0nNwE=.ed25519",
-  "sequence": 216,
-  "timestamp": 1442590513298,
-  "hash": "sha256",
-  "content": {
-    "type": "post",
-    "text": "Kayak club meetup"
-  },
-  "signature": "Sjq1C3yiKdmi1TWvNqxI...gmAQ==.sig.ed25519"
-}</code></pre>
-          <!-- removed -->
+<!-- removed -->
         </div>
         <div class="structure-card">
           <h3>ActivityPub</h3>
