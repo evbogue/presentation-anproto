@@ -1193,7 +1193,7 @@ kayak meetup at 6pm</code></pre>
     </section>
 
 <section class="slide">
-      <span class="kicker">Chaching.social</span>
+      <span class="kicker">Integration: Chaching Social</span>
       <div class="demo-layout one-col">
         <div class="anproto-share-snippet">
           <pre><code>&lt;button class="wiredove-share" id="anprotoShareButton"&gt;
