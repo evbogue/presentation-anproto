@@ -1257,7 +1257,7 @@ kayak meetup at 6pm</code></pre>
     </section>
 
 <section class="slide">
-      <span class="kicker">So how can we keep offline first social networks from failing?</span>
+      <!-- kicker removed -->
       <div class="hero">
         <h1>The Rise and Fall of Offline Social Networks</h1>
         <div class="logo-flicker" style="margin-top: 18px;">
