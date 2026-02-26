@@ -342,7 +342,7 @@ async function renderSlideDeck(): Promise<string> {
       position: absolute;
       inset: 0;
       opacity: 1;
-      transition: opacity 90ms linear;
+      transition: none;
       will-change: opacity;
     }
 
