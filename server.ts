@@ -239,10 +239,7 @@ async function renderSlideDeck(): Promise<string> {
       min-height: 100vh;
       font-family: "Inter", "Segoe UI", sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(49, 240, 255, 0.15), transparent 40%),
-        radial-gradient(circle at 80% 15%, rgba(255, 92, 187, 0.14), transparent 45%),
-        linear-gradient(145deg, var(--bg), var(--bg-2));
+      background: #b00020;
       display: flex;
       align-items: center;
       justify-content: center;
