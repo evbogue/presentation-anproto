@@ -1184,22 +1184,6 @@ kayak meetup at 6pm</code></pre>
       <span class="kicker">Integration: Chaching Social</span>
       <div class="demo-layout one-col">
         <div class="anproto-share-snippet">
-          <pre><code>&lt;button class="wiredove-share" id="anprotoShareButton"&gt;
-  Share
-  &lt;img alt="Wiredove logo" /&gt;
-&lt;/button&gt;
-&lt;script type="module"&gt;
-  import { attachWiredoveShareButton } from 'https://pub.wiredove.net/share/share-button.js'
-
-  attachWiredoveShareButton(
-    document.querySelector('#anprotoShareButton'),
-    {
-      text: 'Check this out',
-      title: document.title,
-      url: window.location.href
-    }
-  )
-&lt;/script&gt;</code></pre>
 
           <button class="wiredove-share wiredove-share-purple" id="anprotoShareButton" type="button">
             Share
