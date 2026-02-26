@@ -1209,7 +1209,7 @@ kayak meetup at 6pm</code></pre>
     </section>
 
 <section class="slide">
-      <span class="kicker">Wiredove</span>
+      <span class="kicker">Proof of concept app: Wiredove</span>
       <div class="demo-layout">
         <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
         <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
