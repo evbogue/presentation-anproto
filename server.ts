@@ -342,28 +342,8 @@ async function renderSlideDeck(): Promise<string> {
       position: absolute;
       inset: 0;
       opacity: 1;
-      animation: neonFlicker 6.5s infinite;
-    }
-
-    /* Deterministic "malfunctioning neon" pattern */
-    @keyframes neonFlicker {
-      0% { opacity: 1; }
-      6% { opacity: 1; }
-      7% { opacity: 0; }
-      9% { opacity: 1; }
-      24% { opacity: 1; }
-      25% { opacity: 0.25; }
-      26% { opacity: 1; }
-      52% { opacity: 1; }
-      53% { opacity: 0; }
-      54% { opacity: 1; }
-      72% { opacity: 1; }
-      73% { opacity: 0.35; }
-      74% { opacity: 1; }
-      90% { opacity: 1; }
-      92% { opacity: 0; }
-      93% { opacity: 1; }
-      100% { opacity: 1; }
+      transition: opacity 90ms linear;
+      will-change: opacity;
     }
 
     .logo-invert {
@@ -1342,6 +1322,35 @@ kayak meetup at 6pm</code></pre>
         advance(deltaX < 0 ? 1 : -1);
       }
     });
+
+    // Random neon flicker on the final slide logo.
+    (function startLogoFlicker() {
+      const el = document.querySelector('.logo-flicker-b');
+      if (!el) return;
+
+      // Weighted random opacity: mostly on, sometimes dim/off.
+      const pickOpacity = () => {
+        const r = Math.random();
+        if (r < 0.72) return 1;
+        if (r < 0.84) return 0.75;
+        if (r < 0.92) return 0.35;
+        if (r < 0.975) return 0.12;
+        return 0;
+      };
+
+      const loop = () => {
+        // Mostly calm, with occasional rapid bursts.
+        const burst = Math.random() < 0.18;
+        const delay = burst
+          ? (25 + Math.random() * 120)
+          : (120 + Math.random() * 900);
+
+        el.style.opacity = String(pickOpacity());
+        window.setTimeout(loop, delay);
+      };
+
+      loop();
+    })();
   </script>
 </body>
 </html>`;
