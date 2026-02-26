@@ -1229,7 +1229,7 @@ kayak meetup at 6pm</code></pre>
       <span class="kicker">So how can we keep offline first social networks from failing?</span>
       <div class="hero">
         <h1>The Rise and Fall of Offline Social Networks</h1>
-        <img class="logo logo-screen" style="margin-top: 18px;" src="https://i.ibb.co/svnBW168/file-000000001ba071fda45dfc3760c4912d.png" alt="Logo" />
+        <img class="logo" style="margin-top: 18px;" src="/final-logo-transparent.png" alt="Logo" />
       </div>
       <div class="footer">Slide 17 / 17</div>
     </section>
