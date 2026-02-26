@@ -645,6 +645,13 @@ async function renderSlideDeck(): Promise<string> {
       grid-template-columns: minmax(0, 1fr);
     }
 
+    /* For slides where the right column is just a QR code and the iframe should
+       fill the rest of the slide width. */
+    .demo-layout.qr-right {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+    }
+
     .ssb-layout {
       grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
     }
@@ -1247,7 +1254,7 @@ kayak meetup at 6pm</code></pre>
 
 <section class="slide">
       <span class="kicker">Proof of concept app: Wiredove</span>
-      <div class="demo-layout">
+      <div class="demo-layout qr-right">
         <iframe class="embed-frame" src="https://wiredove.net/#ev" title="Wiredove" loading="lazy"></iframe>
         <a href="https://wiredove.net/#ev" aria-label="Wiredove link">
           <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=https%3A%2F%2Fwiredove.net%2F%23ev" alt="QR code for Wiredove" />
