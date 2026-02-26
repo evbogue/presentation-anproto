@@ -428,6 +428,7 @@ async function renderSlideDeck(): Promise<string> {
       border: 1px solid rgba(194, 70, 43, 0.35);
       color: var(--ink);
       font-weight: 600;
+      font-size: 1.5em;
     }
 
     .callout.final-cta {
