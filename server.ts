@@ -1234,13 +1234,13 @@ kayak meetup at 6pm</code></pre>
               {
                 text: 'Founder Fridays on Chaching.social',
                 title: document.title,
-                url: 'https://chaching.social/communities/founder-fridays?id=vpgFBQLBuhv6Wehlfwky'
+                url: 'https://chaching.social/post/bnOad060U3zD7gI1mCLR'
               }
             )
           </script>
         </div>
 
-        <iframe class="embed-frame" src="https://chaching.social/communities/founder-fridays?id=vpgFBQLBuhv6Wehlfwky" title="Chaching.social" loading="lazy"></iframe>
+        <iframe class="embed-frame" src="https://chaching.social/post/bnOad060U3zD7gI1mCLR" title="Chaching.social" loading="lazy"></iframe>
       </div>
       <div class="footer">Slide 15 / 17</div>
     </section>
