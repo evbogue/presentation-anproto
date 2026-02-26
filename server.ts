@@ -1061,7 +1061,7 @@ async function renderSlideDeck(): Promise<string> {
     </section>
 
 <section class="slide">
-      <span class="kicker">Bluesky is actually THE TITANIC?</span>
+      <span class="kicker">How centralized is Bluesky?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
       <div class="footer">Slide 12 / 17</div>
