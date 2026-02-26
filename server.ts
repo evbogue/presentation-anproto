@@ -326,6 +326,46 @@ async function renderSlideDeck(): Promise<string> {
       filter: drop-shadow(0 12px 18px rgba(194, 70, 43, 0.25));
     }
 
+    .logo-flicker {
+      position: relative;
+      width: clamp(120px, 22vw, 200px);
+    }
+
+    .logo-flicker img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 12px 18px rgba(194, 70, 43, 0.25));
+    }
+
+    .logo-flicker-b {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      animation: neonFlicker 6.5s infinite;
+    }
+
+    /* Deterministic "malfunctioning neon" pattern */
+    @keyframes neonFlicker {
+      0% { opacity: 1; }
+      6% { opacity: 1; }
+      7% { opacity: 0; }
+      9% { opacity: 1; }
+      24% { opacity: 1; }
+      25% { opacity: 0.25; }
+      26% { opacity: 1; }
+      52% { opacity: 1; }
+      53% { opacity: 0; }
+      54% { opacity: 1; }
+      72% { opacity: 1; }
+      73% { opacity: 0.35; }
+      74% { opacity: 1; }
+      90% { opacity: 1; }
+      92% { opacity: 0; }
+      93% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
     .logo-invert {
       filter: invert(1) drop-shadow(0 12px 18px rgba(194, 70, 43, 0.25));
     }
@@ -1229,7 +1269,10 @@ kayak meetup at 6pm</code></pre>
       <span class="kicker">So how can we keep offline first social networks from failing?</span>
       <div class="hero">
         <h1>The Rise and Fall of Offline Social Networks</h1>
-        <img class="logo" style="margin-top: 18px;" src="/final-logo-transparent.png" alt="Logo" />
+        <div class="logo-flicker" style="margin-top: 18px;">
+          <img class="logo-flicker-a" src="/final-logo-a.png" alt="Logo" />
+          <img class="logo-flicker-b" src="/final-logo-b.png" alt="Logo" />
+        </div>
       </div>
       <div class="footer">Slide 17 / 17</div>
     </section>
