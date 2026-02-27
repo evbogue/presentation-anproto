@@ -979,6 +979,23 @@ async function renderSlideDeck(): Promise<string> {
     </section>
 
 <section class="slide">
+      <span class="kicker">AnProto Demo</span>
+      <div class="demo-layout">
+        <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
+        <div class="demo-copy">
+          <h2>What is ANProto?</h2>
+          <ul>
+            <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
+            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
+            <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
+          </ul>
+          <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
+        </div>
+      </div>
+      <div class="footer">Slide 3 / 17</div>
+    </section>
+
+<section class="slide">
       <span class="kicker">Centralized Social Risks</span>
       <div class="risk-layout">
         <div>
@@ -995,23 +1012,6 @@ async function renderSlideDeck(): Promise<string> {
             <figcaption class="topology-caption">Ann Marie made me a better logo</figcaption>
           </figure>
           <p class="callout">No one cares about decentralization until something happens.</p>
-        </div>
-      </div>
-      <div class="footer">Slide 3 / 17</div>
-    </section>
-
-<section class="slide">
-      <span class="kicker">AnProto Demo</span>
-      <div class="demo-layout">
-        <iframe class="embed-frame" src="https://try.anproto.com/" title="ANProto demo" loading="lazy"></iframe>
-        <div class="demo-copy">
-          <h2>What is ANProto?</h2>
-          <ul>
-            <li><strong>Authenticated.</strong> ed25519 signs the timestamp and message hash.</li>
-            <li><strong>Non-networked.</strong> Bring any transport: URL bar, email, texting, USB stick, Bluetooth, NFC, LoRa, WebSockets, Fetch API, ATProto, Chaching.social, LinkedIn, messenger pigeon (?). Works offline.</li>
-            <li><strong>Protocol.</strong> A structured way of doing things, so implementation is not a running target.</li>
-          </ul>
-          <p class="demo-quote">"I do not know of anybody yet, who has realized that, at the very least, every object should have a URL, because, what the heck are they if they aren't these things, and I believe that every object on the Internet should have an IP address" - <a href="https://www.youtube.com/watch?v=aYT2se94eU0">Alan Kay [OOPSLA 1997]</a></p>
         </div>
       </div>
       <div class="footer">Slide 4 / 17</div>
