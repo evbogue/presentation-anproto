@@ -1969,7 +1969,6 @@ async function renderSsbcDeck(): Promise<string> {
 
     <section class="slide">
       <span class="kicker">Demo</span>
-      <h2>ssbski</h2>
       <div class="demo-frame-grid">
         <div class="demo-pane">
           <h3>Local instance</h3>
