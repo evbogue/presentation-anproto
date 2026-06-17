@@ -1844,7 +1844,8 @@ async function renderSsbcDeck(): Promise<string> {
     }
 
     .phoenix-main {
-      height: clamp(360px, 52vh, 560px);
+      aspect-ratio: 1366 / 768;
+      height: auto;
       object-fit: contain;
       object-position: top left;
     }
@@ -1857,13 +1858,12 @@ async function renderSsbcDeck(): Promise<string> {
 
     .phoenix-side {
       display: grid;
-      grid-template-rows: repeat(2, minmax(0, 1fr));
       gap: 14px;
-      height: clamp(360px, 52vh, 560px);
     }
 
     .phoenix-thumb {
-      height: 100%;
+      aspect-ratio: 1366 / 768;
+      height: auto;
       object-fit: contain;
       object-position: top left;
     }
