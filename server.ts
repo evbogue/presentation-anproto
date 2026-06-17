@@ -1879,6 +1879,19 @@ async function renderSsbcDeck(): Promise<string> {
       object-position: top left;
     }
 
+    .strengths-table th,
+    .strengths-table td {
+      font-size: clamp(0.98rem, 1.35vw, 1.22rem);
+      line-height: 1.35;
+      padding: 16px 18px;
+    }
+
+    .strengths-table td:first-child {
+      width: 50%;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
     .footer {
       position: absolute;
       right: 26px;
@@ -1936,7 +1949,7 @@ async function renderSsbcDeck(): Promise<string> {
         </div>
         <p class="event-flag">at://chicago</p>
       </div>
-      <div class="footer">Slide 1 / 12</div>
+      <div class="footer">Slide 1 / 13</div>
     </section>
 
     <section class="slide">
@@ -1945,7 +1958,7 @@ async function renderSsbcDeck(): Promise<string> {
         <h1>The State of The Secure-Scuttlebot Conservancy</h1>
         <p>keeping the dream alive</p>
       </div>
-      <div class="footer">Slide 2 / 12</div>
+      <div class="footer">Slide 2 / 13</div>
     </section>
 
     <section class="slide">
@@ -1962,7 +1975,7 @@ async function renderSsbcDeck(): Promise<string> {
           </div>
         </div>
       </div>
-      <div class="footer">Slide 3 / 12</div>
+      <div class="footer">Slide 3 / 13</div>
     </section>
 
     <section class="slide">
@@ -1970,7 +1983,7 @@ async function renderSsbcDeck(): Promise<string> {
         <h2 class="docs-title">what is secure-scuttlebot?</h2>
         <iframe class="embed-frame" src="https://ssbski.evbogue.com/docs/archive" title="Archived Secure Scuttlebot docs" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 4 / 12</div>
+      <div class="footer">Slide 4 / 13</div>
     </section>
 
     <section class="slide">
@@ -1987,7 +2000,7 @@ async function renderSsbcDeck(): Promise<string> {
           </div>
         </div>
       </div>
-      <div class="footer">Slide 5 / 12</div>
+      <div class="footer">Slide 5 / 13</div>
     </section>
 
     <section class="slide">
@@ -2000,7 +2013,7 @@ async function renderSsbcDeck(): Promise<string> {
           <li>pilot coding agents as open source maintainers</li>
         </ul>
       </div>
-      <div class="footer">Slide 6 / 12</div>
+      <div class="footer">Slide 6 / 13</div>
     </section>
 
     <section class="slide">
@@ -2008,7 +2021,7 @@ async function renderSsbcDeck(): Promise<string> {
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 7 / 12</div>
+      <div class="footer">Slide 7 / 13</div>
     </section>
 
     <section class="slide">
@@ -2017,7 +2030,7 @@ async function renderSsbcDeck(): Promise<string> {
         ${tableHtml}
         <div class="stamp stamp-anproto">BACKBURNERED</div>
       </div>
-      <div class="footer">Slide 8 / 12</div>
+      <div class="footer">Slide 8 / 13</div>
     </section>
 
     <section class="slide">
@@ -2027,7 +2040,7 @@ async function renderSsbcDeck(): Promise<string> {
         <div class="stamp stamp-anproto">BACKBURNERED</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 9 / 12</div>
+      <div class="footer">Slide 9 / 13</div>
     </section>
 
     <section class="slide">
@@ -2038,14 +2051,50 @@ async function renderSsbcDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 10 / 12</div>
+      <div class="footer">Slide 10 / 13</div>
     </section>
 
     <section class="slide">
       <span class="kicker">How centralized is Bluesky?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 11 / 12</div>
+      <div class="footer">Slide 11 / 13</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">SSB vs ATProto</span>
+      <h2>what each does better</h2>
+      <table class="strengths-table">
+        <thead>
+          <tr>
+            <th>Secure-Scuttlebot</th>
+            <th>ATProto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Local-first identity: your key signs your feed.</td>
+            <td>Human-readable handles and portable DID identity.</td>
+          </tr>
+          <tr>
+            <td>Append-only logs that survive across peers.</td>
+            <td>Fast global discovery through relays and appviews.</td>
+          </tr>
+          <tr>
+            <td>Peer gossip: no global appview required.</td>
+            <td>Cleaner developer surface: lexicons, records, schemas.</td>
+          </tr>
+          <tr>
+            <td>Offline-shaped, personal-computer-shaped social data.</td>
+            <td>Moderation and onboarding that regular people can use.</td>
+          </tr>
+          <tr>
+            <td>Harder to kill when servers disappear.</td>
+            <td>Easier to explain, index, search, and scale.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="footer">Slide 12 / 13</div>
     </section>
 
     <section class="slide">
@@ -2062,7 +2111,7 @@ async function renderSsbcDeck(): Promise<string> {
           <iframe class="embed-frame" src="https://ssbski.evbogue.com/" title="Remote ssbski" loading="lazy"></iframe>
         </div>
       </div>
-      <div class="footer">Slide 12 / 12</div>
+      <div class="footer">Slide 13 / 13</div>
     </section>
   </main>
 
