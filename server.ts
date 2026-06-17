@@ -1816,6 +1816,51 @@ async function renderSsbcDeck(): Promise<string> {
       color: var(--ink);
     }
 
+    .phoenix-slide {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .phoenix-copy h2 {
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      margin-bottom: 10px;
+    }
+
+    .phoenix-copy p {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 1.05rem;
+    }
+
+    .phoenix-main,
+    .phoenix-thumb {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+      background: #111;
+    }
+
+    .phoenix-main {
+      max-height: 620px;
+      object-fit: contain;
+    }
+
+    .phoenix-thumbs {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .phoenix-thumb {
+      max-height: 210px;
+      object-fit: cover;
+      object-position: top left;
+    }
+
     .footer {
       position: absolute;
       right: 26px;
@@ -1857,7 +1902,7 @@ async function renderSsbcDeck(): Promise<string> {
 
     @media (max-width: 820px) {
       .slide { min-height: 86vh; padding: 30px; }
-      .two, .bio, .cards, .structure-grid, .demo-frame-grid { grid-template-columns: 1fr; }
+      .two, .bio, .cards, .structure-grid, .demo-frame-grid, .phoenix-slide { grid-template-columns: 1fr; }
       table { font-size: 0.82rem; }
       th, td { padding: 9px; }
     }
@@ -1873,7 +1918,7 @@ async function renderSsbcDeck(): Promise<string> {
         </div>
         <p class="event-flag">at://chicago</p>
       </div>
-      <div class="footer">Slide 1 / 11</div>
+      <div class="footer">Slide 1 / 12</div>
     </section>
 
     <section class="slide">
@@ -1882,7 +1927,7 @@ async function renderSsbcDeck(): Promise<string> {
         <h1>The State of The Secure-Scuttlebot Conservancy</h1>
         <p>keeping the dream alive</p>
       </div>
-      <div class="footer">Slide 2 / 11</div>
+      <div class="footer">Slide 2 / 12</div>
     </section>
 
     <section class="slide">
@@ -1898,7 +1943,7 @@ async function renderSsbcDeck(): Promise<string> {
           </ul>
         </div>
       </div>
-      <div class="footer">Slide 3 / 11</div>
+      <div class="footer">Slide 3 / 12</div>
     </section>
 
     <section class="slide">
@@ -1906,7 +1951,25 @@ async function renderSsbcDeck(): Promise<string> {
         <h2 class="docs-title">what is secure-scuttlebot?</h2>
         <iframe class="embed-frame" src="https://ssbski.evbogue.com/docs/archive" title="Archived Secure Scuttlebot docs" loading="lazy"></iframe>
       </div>
-      <div class="footer">Slide 4 / 11</div>
+      <div class="footer">Slide 4 / 12</div>
+    </section>
+
+    <section class="slide">
+      <div class="phoenix-slide">
+        <div>
+          <img class="phoenix-main" src="/phoenix-home.png" alt="Phoenix SSB client home feed screenshot" />
+        </div>
+        <div class="phoenix-copy">
+          <span class="kicker">OG SSB app</span>
+          <h2>Phoenix</h2>
+          <p>early Secure Scuttlebutt web client by Paul Frazee and Dominic Tarr</p>
+          <div class="phoenix-thumbs">
+            <img class="phoenix-thumb" src="/phoenix-network.png" alt="Phoenix network screen screenshot" />
+            <img class="phoenix-thumb" src="/phoenix-profile.png" alt="Phoenix profile screen screenshot" />
+          </div>
+        </div>
+      </div>
+      <div class="footer">Slide 5 / 12</div>
     </section>
 
     <section class="slide">
@@ -1919,7 +1982,7 @@ async function renderSsbcDeck(): Promise<string> {
           <li>pilot coding agents as open source maintainers</li>
         </ul>
       </div>
-      <div class="footer">Slide 5 / 11</div>
+      <div class="footer">Slide 6 / 12</div>
     </section>
 
     <section class="slide">
@@ -1927,7 +1990,7 @@ async function renderSsbcDeck(): Promise<string> {
       <div class="table-stamps">
         ${tableHtml}
       </div>
-      <div class="footer">Slide 6 / 11</div>
+      <div class="footer">Slide 7 / 12</div>
     </section>
 
     <section class="slide">
@@ -1936,7 +1999,7 @@ async function renderSsbcDeck(): Promise<string> {
         ${tableHtml}
         <div class="stamp stamp-anproto">BACKBURNERED</div>
       </div>
-      <div class="footer">Slide 7 / 11</div>
+      <div class="footer">Slide 8 / 12</div>
     </section>
 
     <section class="slide">
@@ -1946,7 +2009,7 @@ async function renderSsbcDeck(): Promise<string> {
         <div class="stamp stamp-anproto">BACKBURNERED</div>
         <div class="stamp stamp-activitypub">INSECURE</div>
       </div>
-      <div class="footer">Slide 8 / 11</div>
+      <div class="footer">Slide 9 / 12</div>
     </section>
 
     <section class="slide">
@@ -1957,14 +2020,14 @@ async function renderSsbcDeck(): Promise<string> {
         <div class="stamp stamp-activitypub">INSECURE</div>
         <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
       </div>
-      <div class="footer">Slide 9 / 11</div>
+      <div class="footer">Slide 10 / 12</div>
     </section>
 
     <section class="slide">
       <span class="kicker">How centralized is Bluesky?</span>
       <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
       <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
-      <div class="footer">Slide 10 / 11</div>
+      <div class="footer">Slide 11 / 12</div>
     </section>
 
     <section class="slide">
@@ -1981,7 +2044,7 @@ async function renderSsbcDeck(): Promise<string> {
           <iframe class="embed-frame" src="https://ssbski.evbogue.com/" title="Remote ssbski" loading="lazy"></iframe>
         </div>
       </div>
-      <div class="footer">Slide 11 / 11</div>
+      <div class="footer">Slide 12 / 12</div>
     </section>
   </main>
 
