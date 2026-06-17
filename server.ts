@@ -1547,6 +1547,17 @@ async function renderSsbcDeck(): Promise<string> {
       box-shadow: 0 18px 40px rgba(0,0,0,0.48);
     }
 
+    .bio-lines {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .bio-lines p {
+      margin: 0;
+      color: var(--muted);
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1943,12 +1954,12 @@ async function renderSsbcDeck(): Promise<string> {
         <img src="/IMG_6743.jpg" alt="Everett Bogue" />
         <div>
           <h2>Everett Bogue</h2>
-          <ul>
-            <li>Kayaking Instructor</li>
-            <li>ANProto CTO</li>
-            <li>Defacto maintainer of SSB</li>
-            <li>@evbogue.com on Bluesky</li>
-          </ul>
+          <div class="bio-lines">
+            <p>Kayaking Instructor</p>
+            <p>ANProto CTO</p>
+            <p>Defacto maintainer of SSB</p>
+            <p><a href="https://bsky.app/profile/evbogue.com">@evbogue.com</a> on Bluesky</p>
+          </div>
         </div>
       </div>
       <div class="footer">Slide 3 / 12</div>
