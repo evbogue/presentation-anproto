@@ -1374,11 +1374,704 @@ kayak meetup at 6pm</code></pre>
 </html>`;
 }
 
+async function renderSsbcDeck(): Promise<string> {
+  const tablePath = `${Deno.cwd()}/table.md`;
+  let tableMd = "";
+
+  try {
+    tableMd = await Deno.readTextFile(tablePath);
+  } catch {
+    tableMd = "| Column A | Column B |\n| --- | --- |\n| Example 1 | Example 2 |\n";
+  }
+
+  const tableHtml = parseTable(tableMd) ?? `<pre>${escapeHtml(tableMd)}</pre>`;
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure-Scuttlebot Conservancy</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+    :root {
+      color-scheme: dark;
+      --bg: #020403;
+      --bg-2: #08110f;
+      --ink: #f7fff8;
+      --muted: #afc2b7;
+      --accent: #50f2a8;
+      --accent-2: #31a8ff;
+      --hot: #ff4fb8;
+      --card: #08100d;
+      --border: rgba(80, 242, 168, 0.78);
+      --shadow: rgba(0, 0, 0, 0.58);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(80, 242, 168, 0.12), transparent 34%),
+        radial-gradient(circle at 82% 22%, rgba(49, 168, 255, 0.15), transparent 36%),
+        linear-gradient(145deg, var(--bg), var(--bg-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    main {
+      width: min(1160px, 94vw);
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      min-height: min(760px, 88vh);
+      padding: clamp(32px, 5vw, 64px);
+      background: linear-gradient(145deg, rgba(8, 16, 13, 0.96), rgba(5, 10, 16, 0.96));
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 56px var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 420ms ease;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 100% 4px;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .slide.active { display: block; }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    h1 { font-size: clamp(3rem, 7vw, 6.6rem); margin-bottom: 18px; }
+    h2 { font-size: clamp(2.1rem, 4.4vw, 4rem); margin-bottom: 22px; }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.7rem); margin-bottom: 10px; }
+    p, li { font-size: clamp(1.04rem, 1.45vw, 1.35rem); line-height: 1.45; color: var(--muted); }
+    strong { color: var(--ink); }
+
+    ul { margin: 0; padding-left: 22px; }
+    li { margin-bottom: 10px; }
+
+    a { color: var(--accent); }
+
+    .kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      min-height: calc(min(760px, 88vh) - 128px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 18px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .event-flag {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(80, 242, 168, 0.45);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(80, 242, 168, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.9rem;
+    }
+
+    .bird {
+      width: min(420px, 62vw);
+      position: relative;
+      filter: drop-shadow(0 24px 48px rgba(255, 79, 184, 0.26));
+    }
+
+    .bird img {
+      width: 100%;
+      display: block;
+      border-radius: 24px;
+    }
+
+    .bird .b {
+      position: absolute;
+      inset: 0;
+      will-change: opacity, transform;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .bio {
+      grid-template-columns: 34% 1fr;
+    }
+
+    .bio img, .screen img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.48);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 1.02rem;
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .structure-card {
+      padding: 18px;
+      border-radius: 8px;
+      background: rgba(4, 9, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .structure-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .structure-card pre {
+      margin: 12px 0 8px;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      overflow: auto;
+      max-height: 180px;
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+
+    .structure-card code {
+      font-family: "JetBrains Mono", "Source Code Pro", monospace;
+      color: var(--ink);
+      display: block;
+      white-space: pre-wrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.9rem, 1.1vw, 1.08rem);
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent);
+      background: rgba(80, 242, 168, 0.08);
+      font-weight: 700;
+    }
+
+    td:first-child {
+      color: var(--ink);
+      font-weight: 700;
+      width: 18%;
+    }
+
+    .table-gray-anproto th:nth-child(4),
+    .table-gray-anproto td:nth-child(4) {
+      background: rgba(31, 26, 23, 0.08);
+      color: rgba(247, 255, 248, 0.34);
+    }
+
+    .table-gray-anproto th:nth-child(4) {
+      font-weight: 500;
+    }
+
+    .table-gray-activitypub th:nth-child(3),
+    .table-gray-activitypub td:nth-child(3),
+    .table-gray-nostr th:nth-child(6),
+    .table-gray-nostr td:nth-child(6),
+    .table-gray-farcaster th:nth-child(7),
+    .table-gray-farcaster td:nth-child(7) {
+      background: rgba(31, 26, 23, 0.08);
+      color: rgba(247, 255, 248, 0.34);
+    }
+
+    .table-gray-activitypub th:nth-child(3),
+    .table-gray-nostr th:nth-child(6),
+    .table-gray-farcaster th:nth-child(7) {
+      font-weight: 500;
+    }
+
+    .table-stamps {
+      position: relative;
+    }
+
+    .table-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .table-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: var(--card);
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .table-stamps table {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stamp {
+      position: absolute;
+      padding: 6px 14px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      color: var(--hot);
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(4, 9, 20, 0.85);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+      white-space: pre;
+      line-height: 1.1;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .stamp-anproto {
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-10deg);
+      letter-spacing: 0.14em;
+    }
+
+    .stamp-activitypub {
+      top: 24px;
+      left: 34%;
+      transform: translateX(-50%) rotate(-8deg);
+      letter-spacing: 0.14em;
+    }
+
+    .stamp-nostr-farcaster {
+      top: 28px;
+      left: 84%;
+      transform: translateX(-50%) rotate(5deg);
+      letter-spacing: 0.08em;
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin: 22px 0;
+    }
+
+    .logos img {
+      width: clamp(82px, 12vw, 150px);
+      height: clamp(82px, 12vw, 150px);
+      object-fit: contain;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .embed-frame {
+      width: 100%;
+      height: clamp(440px, 68vh, 720px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      background: #000;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+
+    .demo-frame-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .demo-pane {
+      min-width: 0;
+    }
+
+    .demo-pane h3 {
+      margin-bottom: 6px;
+    }
+
+    .demo-pane p {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .demo-pane .embed-frame {
+      height: clamp(430px, 62vh, 650px);
+    }
+
+    .docs-slide {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: calc(min(760px, 88vh) - 128px);
+    }
+
+    .docs-title {
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      margin: 0;
+    }
+
+    .docs-slide .embed-frame {
+      flex: 1;
+      height: auto;
+      min-height: 520px;
+    }
+
+    .compact-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(min(760px, 88vh) - 128px);
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .compact-slide .docs-title {
+      margin-bottom: 22px;
+    }
+
+    .compact-slide p {
+      margin-top: 0;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    .footer {
+      position: absolute;
+      right: 26px;
+      bottom: 22px;
+      color: rgba(247,255,248,0.52);
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.34);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.16);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 820px) {
+      .slide { min-height: 86vh; padding: 30px; }
+      .two, .bio, .cards, .structure-grid, .demo-frame-grid { grid-template-columns: 1fr; }
+      table { font-size: 0.82rem; }
+      th, td { padding: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="slide active">
+      <div class="hero">
+        <div class="bird">
+          <img class="a" src="/final-logo-a.png" alt="Flickering dead Twitter bird" />
+          <img class="b" src="/final-logo-b.png" alt="" aria-hidden="true" />
+        </div>
+        <p class="event-flag">at://chicago</p>
+      </div>
+      <div class="footer">Slide 1 / 11</div>
+    </section>
+
+    <section class="slide">
+      <div class="hero">
+        <span class="kicker">Tonight</span>
+        <h1>The State of The Secure-Scuttlebot Conservancy</h1>
+        <p>keeping the dream alive</p>
+      </div>
+      <div class="footer">Slide 2 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">About me</span>
+      <div class="two bio">
+        <img src="/IMG_6743.jpg" alt="Everett Bogue" />
+        <div>
+          <h2>Everett Bogue</h2>
+          <ul>
+            <li>Kayaking Instructor</li>
+            <li>ANProto CTO</li>
+            <li>Defacto maintainer of SSB</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">Slide 3 / 11</div>
+    </section>
+
+    <section class="slide">
+      <div class="docs-slide">
+        <h2 class="docs-title">what is secure-scuttlebot?</h2>
+        <iframe class="embed-frame" src="https://ssbski.evbogue.com/docs/archive" title="Archived Secure Scuttlebot docs" loading="lazy"></iframe>
+      </div>
+      <div class="footer">Slide 4 / 11</div>
+    </section>
+
+    <section class="slide">
+      <div class="compact-slide">
+        <h2 class="docs-title">what is the ssb conservancy?</h2>
+        <p>established after the failed mutiny at the Secure-Scuttlebot Consortium of 2025</p>
+        <ul>
+          <li>preserve SSB in its original form for educational purposes</li>
+          <li>modernize Node dependencies</li>
+          <li>pilot coding agents as open source maintainers</li>
+        </ul>
+      </div>
+      <div class="footer">Slide 5 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">protocol comparisons</span>
+      <div class="table-stamps">
+        ${tableHtml}
+      </div>
+      <div class="footer">Slide 6 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">protocol comparisons</span>
+      <div class="table-gray-anproto table-stamps">
+        ${tableHtml}
+        <div class="stamp stamp-anproto">BACKBURNERED</div>
+      </div>
+      <div class="footer">Slide 7 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">protocol comparisons</span>
+      <div class="table-gray-anproto table-gray-activitypub table-stamps">
+        ${tableHtml}
+        <div class="stamp stamp-anproto">BACKBURNERED</div>
+        <div class="stamp stamp-activitypub">INSECURE</div>
+      </div>
+      <div class="footer">Slide 8 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">protocol comparisons</span>
+      <div class="table-gray-anproto table-gray-activitypub table-gray-nostr table-gray-farcaster table-stamps">
+        ${tableHtml}
+        <div class="stamp stamp-anproto">BACKBURNERED</div>
+        <div class="stamp stamp-activitypub">INSECURE</div>
+        <div class="stamp stamp-nostr-farcaster">Bitcoiners, YUCK!</div>
+      </div>
+      <div class="footer">Slide 9 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">How centralized is Bluesky?</span>
+      <iframe class="embed-frame" src="https://arewedecentralizedyet.online/" title="Are We Decentralized Yet" loading="lazy"></iframe>
+      <p class="source-line">Source: <a href="https://arewedecentralizedyet.online/">arewedecentralizedyet.online</a> by <a href="https://ricci.io">Rob Ricci</a></p>
+      <div class="footer">Slide 10 / 11</div>
+    </section>
+
+    <section class="slide">
+      <span class="kicker">Demo</span>
+      <h2>ssbski</h2>
+      <div class="demo-frame-grid">
+        <div class="demo-pane">
+          <h3>Local instance</h3>
+          <p><a href="http://127.0.0.1:8990/">http://127.0.0.1:8990/</a></p>
+          <iframe class="embed-frame" src="http://127.0.0.1:8990/" title="Local ssbski" loading="lazy"></iframe>
+        </div>
+        <div class="demo-pane">
+          <h3>Remote instance</h3>
+          <p><a href="https://ssbski.evbogue.com/">https://ssbski.evbogue.com/</a></p>
+          <iframe class="embed-frame" src="https://ssbski.evbogue.com/" title="Remote ssbski" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="footer">Slide 11 / 11</div>
+    </section>
+  </main>
+
+  <div class="nav" aria-label="Slide navigation"></div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const nav = document.querySelector(".nav");
+    let current = 0;
+
+    const renderDots = () => {
+      nav.innerHTML = "";
+      slides.forEach((_, idx) => {
+        const dot = document.createElement("button");
+        dot.className = "dot" + (idx === 0 ? " active" : "");
+        dot.addEventListener("click", () => goTo(idx));
+        nav.appendChild(dot);
+      });
+    };
+
+    const goTo = (index) => {
+      const safe = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, idx) => slide.classList.toggle("active", idx === safe));
+      nav.querySelectorAll(".dot").forEach((dot, idx) => dot.classList.toggle("active", idx === safe));
+      current = safe;
+    };
+
+    renderDots();
+
+    const advance = (dir) => goTo(current + dir);
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown") advance(1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") advance(-1);
+    });
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const swipeThreshold = 60;
+    window.addEventListener("touchstart", (event) => {
+      const touch = event.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    });
+    window.addEventListener("touchend", (event) => {
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThreshold) {
+        advance(deltaX < 0 ? 1 : -1);
+      }
+    });
+
+    (function startBirdFlicker() {
+      const el = document.querySelector(".bird .b");
+      if (!el) return;
+      const pickOpacity = () => {
+        const r = Math.random();
+        if (r < 0.68) return 1;
+        if (r < 0.82) return 0.7;
+        if (r < 0.92) return 0.28;
+        if (r < 0.975) return 0.08;
+        return 0;
+      };
+      const loop = () => {
+        const burst = Math.random() < 0.2;
+        const delay = burst ? 25 + Math.random() * 120 : 120 + Math.random() * 820;
+        el.style.opacity = String(pickOpacity());
+        el.style.transform = "translate(" + ((Math.random() - 0.5) * 2) + "px, " + ((Math.random() - 0.5) * 2) + "px)";
+        window.setTimeout(loop, delay);
+      };
+      loop();
+    })();
+  </script>
+</body>
+</html>`;
+}
+
 Deno.serve({ port: 8099 }, async (req) => {
   const url = new URL(req.url);
   const pathname = decodeURIComponent(url.pathname);
 
-  if (pathname === "/" || pathname === "/index.html") {
+  if (pathname === "/" || pathname === "/index.html" || pathname === "/ssbc") {
+    const html = await renderSsbcDeck();
+    return new Response(encoder.encode(html), {
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  }
+
+  if (pathname === "/anproto" || pathname === "/anproto-backup") {
     const html = await renderSlideDeck();
     return new Response(encoder.encode(html), {
       headers: { "content-type": "text/html; charset=utf-8" },
