@@ -1845,7 +1845,7 @@ async function renderSsbcDeck(): Promise<string> {
 
     .phoenix-main {
       height: clamp(360px, 52vh, 560px);
-      object-fit: cover;
+      object-fit: contain;
       object-position: top left;
     }
 
@@ -1864,7 +1864,7 @@ async function renderSsbcDeck(): Promise<string> {
 
     .phoenix-thumb {
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: top left;
     }
 
