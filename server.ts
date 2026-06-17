@@ -1817,10 +1817,9 @@ async function renderSsbcDeck(): Promise<string> {
     }
 
     .phoenix-slide {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
-      gap: 20px;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .phoenix-copy h2 {
@@ -1845,18 +1844,19 @@ async function renderSsbcDeck(): Promise<string> {
     }
 
     .phoenix-main {
-      max-height: 620px;
-      object-fit: contain;
+      height: clamp(360px, 52vh, 560px);
+      object-fit: cover;
+      object-position: top left;
     }
 
-    .phoenix-thumbs {
+    .phoenix-images {
       display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.75fr) minmax(0, 0.75fr);
       gap: 14px;
-      margin-top: 14px;
     }
 
     .phoenix-thumb {
-      max-height: 210px;
+      height: clamp(240px, 36vh, 360px);
       object-fit: cover;
       object-position: top left;
     }
@@ -1902,7 +1902,7 @@ async function renderSsbcDeck(): Promise<string> {
 
     @media (max-width: 820px) {
       .slide { min-height: 86vh; padding: 30px; }
-      .two, .bio, .cards, .structure-grid, .demo-frame-grid, .phoenix-slide { grid-template-columns: 1fr; }
+      .two, .bio, .cards, .structure-grid, .demo-frame-grid, .phoenix-images { grid-template-columns: 1fr; }
       table { font-size: 0.82rem; }
       th, td { padding: 9px; }
     }
@@ -1956,17 +1956,15 @@ async function renderSsbcDeck(): Promise<string> {
 
     <section class="slide">
       <div class="phoenix-slide">
-        <div>
-          <img class="phoenix-main" src="/phoenix-home.png" alt="Phoenix SSB client home feed screenshot" />
-        </div>
         <div class="phoenix-copy">
           <span class="kicker">OG SSB app</span>
           <h2>Phoenix</h2>
           <p>early Secure Scuttlebutt web client by Paul Frazee and Dominic Tarr</p>
-          <div class="phoenix-thumbs">
-            <img class="phoenix-thumb" src="/phoenix-network.png" alt="Phoenix network screen screenshot" />
-            <img class="phoenix-thumb" src="/phoenix-profile.png" alt="Phoenix profile screen screenshot" />
-          </div>
+        </div>
+        <div class="phoenix-images">
+          <img class="phoenix-main" src="/phoenix-home.png" alt="Phoenix SSB client home feed screenshot" />
+          <img class="phoenix-thumb" src="/phoenix-network.png" alt="Phoenix network screen screenshot" />
+          <img class="phoenix-thumb" src="/phoenix-profile.png" alt="Phoenix profile screen screenshot" />
         </div>
       </div>
       <div class="footer">Slide 5 / 12</div>
