@@ -1536,7 +1536,7 @@ async function renderSsbcDeck(): Promise<string> {
     }
 
     .bio {
-      grid-template-columns: 34% 1fr;
+      grid-template-columns: minmax(360px, 46%) minmax(0, 1fr);
     }
 
     .bio img, .screen img {
@@ -1947,6 +1947,7 @@ async function renderSsbcDeck(): Promise<string> {
             <li>Kayaking Instructor</li>
             <li>ANProto CTO</li>
             <li>Defacto maintainer of SSB</li>
+            <li>@evbogue.com on Bluesky</li>
           </ul>
         </div>
       </div>
