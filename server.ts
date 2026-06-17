@@ -1965,7 +1965,7 @@ async function renderSsbcDeck(): Promise<string> {
       <div class="phoenix-slide">
         <div class="phoenix-copy">
           <h2>Phoenix</h2>
-          <p>early Secure-Scuttlebot web client by Paul Frazee and Dominic Tarr</p>
+          <p>early Secure-Scuttlebot web client by Paul Frazee</p>
         </div>
         <div class="phoenix-images">
           <img class="phoenix-main" src="/phoenix-home.png" alt="Phoenix SSB client home feed screenshot" />
