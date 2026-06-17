@@ -1851,12 +1851,19 @@ async function renderSsbcDeck(): Promise<string> {
 
     .phoenix-images {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.75fr) minmax(0, 0.75fr);
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
       gap: 14px;
     }
 
+    .phoenix-side {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      height: clamp(360px, 52vh, 560px);
+    }
+
     .phoenix-thumb {
-      height: clamp(240px, 36vh, 360px);
+      height: 100%;
       object-fit: cover;
       object-position: top left;
     }
@@ -1957,14 +1964,15 @@ async function renderSsbcDeck(): Promise<string> {
     <section class="slide">
       <div class="phoenix-slide">
         <div class="phoenix-copy">
-          <span class="kicker">OG SSB app</span>
           <h2>Phoenix</h2>
-          <p>early Secure Scuttlebutt web client by Paul Frazee and Dominic Tarr</p>
+          <p>early Secure-Scuttlebot web client by Paul Frazee and Dominic Tarr</p>
         </div>
         <div class="phoenix-images">
           <img class="phoenix-main" src="/phoenix-home.png" alt="Phoenix SSB client home feed screenshot" />
-          <img class="phoenix-thumb" src="/phoenix-network.png" alt="Phoenix network screen screenshot" />
-          <img class="phoenix-thumb" src="/phoenix-profile.png" alt="Phoenix profile screen screenshot" />
+          <div class="phoenix-side">
+            <img class="phoenix-thumb" src="/phoenix-network.png" alt="Phoenix network screen screenshot" />
+            <img class="phoenix-thumb" src="/phoenix-profile.png" alt="Phoenix profile screen screenshot" />
+          </div>
         </div>
       </div>
       <div class="footer">Slide 5 / 12</div>
